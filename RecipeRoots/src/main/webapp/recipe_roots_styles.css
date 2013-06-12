@@ -1,0 +1,108 @@
+body {
+    width: 960px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: cornsilk;
+}
+
+#banner {
+    color: black;
+    font-family: Georgia;
+    font-size: 50px;
+    background-color: sandybrown;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+
+}
+
+#login_register {
+    margin-right: auto;
+    margin-left: auto;
+    width: 300px;
+    padding: 20px;
+    border: 3px double saddlebrown;
+}
+#login_register table {
+    margin-left: auto;
+    margin-right: auto;
+}
+h1 {
+    margin-top: 0px;
+    font-size: 30px;
+    font-family: Arial;
+    color: saddlebrown;
+    /*border: 1px solid red;*/
+
+}
+
+#section_main{
+    display: block;
+    float: left;
+    margin-left: 20px;
+ /*  border: 1px solid red;*/
+
+}
+
+.recipe {
+    padding: 2px;
+    margin-bottom: 5px;
+    background-color: bisque;
+    width: 450px;
+}
+
+.options {
+    float: right;
+}
+
+#recipes_toolbar {
+    font-family: arial;
+    padding: 2px;
+    margin-bottom: 5px;
+    background-color: bisque;
+    width: 450px;
+    height: 30px;
+    line-height: 30px;
+}
+#recipes_toolbar a {
+    padding-right: 2px;
+    float: right;
+}
+
+#nav {
+    float: left;
+    width: 148px;
+    height: 426px;
+    background-color: gainsboro;
+    /*border: 1px solid red;*/
+}
+#nav form {
+    display: block;
+    padding: 8px;
+  /*border: 1px solid red;*/
+ }
+
+#nav a {
+    display: block;
+    width: 126px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    color: darkblue;
+    font-family: arial;
+  /*  border: 1px solid red;*/
+}
+
+.featured_recipes {
+    float: left;
+    width: 360px;
+    background-color: cornsilk;
+    padding: 10px;
+    margin-left: 20px;
+    height: 400px;
+    border: 3px double sandybrown;
+
+}
