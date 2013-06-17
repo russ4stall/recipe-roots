@@ -36,7 +36,7 @@ public class EditServlet extends HttpServlet {
         boolean isNew = Boolean.parseBoolean(sIsNew);
 
 
-        String recipeField = null;
+        String recipeField;
 
         if(!isNew){
             String sRecipeId = req.getParameter("id");
@@ -139,8 +139,7 @@ public class EditServlet extends HttpServlet {
         String recipeText = req.getParameter("recipe");
         String recipeTitle = req.getParameter("title");
 
-        Date date = new Date();
-        String query = null;
+
 
         HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("user");
@@ -161,7 +160,7 @@ public class EditServlet extends HttpServlet {
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
-
+            String query;
             if(isNew){
 
                 query = "INSERT INTO recipes (title, recipe, user_id, created_on) " +

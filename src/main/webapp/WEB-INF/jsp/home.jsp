@@ -36,7 +36,7 @@
     <h1>Most Recent Recipe</h1>
     <div class="recipe_display">
         <h3>${recipe2.title}</h3>
-        <h4>Created by: <a href="mailto:${recipe2.user.email}">${recipe2.user.name}</a></h3>
+        <h4>Created by: <a href="mailto:${recipe2.user.email}">${recipe2.user.name}</a></h4>
             <p>
                 ${recipe2.recipe}
             </p>

@@ -19,7 +19,7 @@ import java.util.List;
 public class BrowseServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String logInLink = null;
+        String logInLink;
         HttpSession session = req.getSession(false);
         if(session == null || session.getAttribute("user") == null){
            logInLink = "<a href=\"/login?validUser=true\">Log In</a>";

@@ -33,9 +33,9 @@
     </servlet-mapping>
 
     <servlet>
-    <servlet-name>HomeServlet</servlet-name>
-    <servlet-class>com.github.russ4stall.reciperoots.HomeServlet</servlet-class>
-</servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>com.github.russ4stall.reciperoots.HomeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
