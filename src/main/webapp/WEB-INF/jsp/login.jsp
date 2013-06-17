@@ -16,20 +16,21 @@
 <div id="nav">
     <form>&nbsp Search Recipes:<input type="text" size="15" name="search"></form>
     <a href="/home">Home</a>
-    <a href="#">Browse Recipes</a>
+    <a href="/browse">Browse Recipes</a>
     <a href="/myrecipes">My Recipes</a>
-    <a href="/login">Log In</a>
+    ${logInLink}
 
 </div>
 
 <form id="login_register" action="${pageContext.request.contextPath}/login" method="post">
     <table>
-        <tr><td>&nbsp</td><td><h1>Log In</h1></td></tr>
-        <tr><td>Email: </td><td><input type="text" name="email"></td></tr>
+        <tr><td colspan="2" style="text-align:center"><h1>Log In</h1></td></tr>
+        <tr><td colspan="2" style="color:red; text-align:center"><small>${loginError}</small></td></tr>
+        <tr><td>Email: </td><td><input type="text" name="email" value="${email}"></td></tr>
         <tr><td>Password: </td><td><input type="password" name="password"></td></tr>
-        <tr><td>&nbsp</td><td><input type="submit" value="Log In"></td></tr>
+        <tr><td colspan="2" style="text-align:center"><input type="submit" value="Log In"></td></tr>
         <tr><td>&nbsp</td></tr>
-        <tr><td colspan="2">Not a member? <a href="/register">Sign Up</a></td></tr>
+        <tr><td colspan="2" style="text-align:center">Not a member? <a href="/register?passMatch=true&emailMatch=true">Sign Up</a></td></tr>
     </table>
 
 

@@ -4,6 +4,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,7 +20,19 @@ import java.util.List;
 public class MyRecipesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //get users recipes and display them
+        String logInLink = null;
+        HttpSession session = req.getSession(false);
+        if(session == null || session.getAttribute("user") == null){
+            resp.sendRedirect("/login?validUser=true");
+            return;
+        }else{
+            logInLink = "<a href=\"/logout\">Log Out</a>";
+        }
+
+        req.setAttribute("logInLink", logInLink);
+
+        User user = (User) session.getAttribute("user");
+
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -39,7 +52,8 @@ public class MyRecipesServlet extends HttpServlet {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
 
-            preparedStatement = connection.prepareStatement("select * from recipes");
+            preparedStatement = connection.prepareStatement("SELECT * FROM recipes WHERE user_id=? ORDER BY title");
+            preparedStatement.setInt(1, user.getId());
             resultSet = preparedStatement.executeQuery();
 
 

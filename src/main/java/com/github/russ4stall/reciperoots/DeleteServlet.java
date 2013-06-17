@@ -6,19 +6,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
- * Date: 6/12/13
- * Time: 1:36 PM
+ * Date: 6/13/13
+ * Time: 10:55 AM
  *
  * @author Russ Forstall
  */
-public class ViewRecipeServlet extends HttpServlet {
-
+public class DeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String logInLink = null;
@@ -30,16 +29,18 @@ public class ViewRecipeServlet extends HttpServlet {
         }
         req.setAttribute("logInLink", logInLink);
 
+        req.getRequestDispatcher("/WEB-INF/jsp/delete.jsp").forward(req, resp);
+    }
 
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String sRecipeId = req.getParameter("id");
         int recipeId = Integer.valueOf(sRecipeId);
 
-        Recipe recipe = new Recipe();
-        User user = new User();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -54,44 +55,20 @@ public class ViewRecipeServlet extends HttpServlet {
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
 
-            preparedStatement = connection.prepareStatement("SELECT * FROM recipes WHERE id=?");
+            String query = "DELETE FROM recipes WHERE id = ?";
 
+
+            preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, recipeId);
-            resultSet = preparedStatement.executeQuery();
+            //resultSet = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
 
-            while (resultSet.next()) {
-                recipe.setTitle(resultSet.getString("title"));//get title from db
-                user.setId(resultSet.getInt("user_id"));
-                recipe.setUser(user);
-                recipe.setRecipe(resultSet.getString("recipe"));//get recipe string from db
-                recipe.setCreatedOn(resultSet.getDate("created_on"));//get date from db
-                recipe.setId(resultSet.getInt("id"));
-            }
 
-            preparedStatement = connection.prepareStatement("SELECT * FROM users WHERE id=?");
 
-            preparedStatement.setInt(1, user.getId());
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()){
-                user.setId(resultSet.getInt("id"));
-                user.setName(resultSet.getString("name"));
-                user.setEmail(resultSet.getString("email"));
-                user.setLastLoginOn(resultSet.getDate("last_login_on"));
-                user.setRegisteredOn(resultSet.getDate("registered_on"));
-
-            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    // don't care
-                }
-            }
 
             if (preparedStatement != null) {
                 try {
@@ -113,8 +90,6 @@ public class ViewRecipeServlet extends HttpServlet {
 
 
 
-        req.setAttribute("recipe", recipe);
-
-        req.getRequestDispatcher("/WEB-INF/jsp/viewrecipe.jsp").forward(req, resp);
+        resp.sendRedirect("/myrecipes");
     }
 }

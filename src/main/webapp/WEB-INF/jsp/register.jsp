@@ -16,21 +16,23 @@
 <div id="nav">
     <form>&nbsp Search Recipes:<input type="text" size="15" name="search"></form>
     <a href="/home">Home</a>
-    <a href="#">Browse Recipes</a>
+    <a href="/browse">Browse Recipes</a>
     <a href="/myrecipes">My Recipes</a>
-    <a href="/login">Log In</a>
-
+    ${logInLink}
 </div>
 
 <form id="login_register" action="${pageContext.request.contextPath}/register" method="post">
     <table>
 
-        <tr><td>&nbsp</td><td><h1>Register</h1></td></tr>
-        <tr><td>Name: </td><td><input type="text" name="email"></td></tr>
-        <tr><td>Email: </td><td><input type="text" name="email"></td></tr>
-        <tr><td>Password: </td><td><input type="password" name="password"></td></tr>
-        <tr><td>Confirm Password: </td><td><input type="password" name="password"></td></tr>
-        <tr><td>&nbsp</td><td><input type="submit" value="Submit"></td></tr>
+        <tr><td colspan="2" style="text-align:center"><h1>Register</h1></td></tr>
+        <tr><td style="text-align:right">Name: </td><td><input type="text" name="name" value="${param.name}"></td></tr>
+        <tr><td style="text-align:right">Email: </td><td><input type="text" name="email" value="${param.email}"></td></tr>
+        <tr><td style="text-align:right">Confirm Email: </td><td><input type="text" name="email2" value="${param.email2}"></td></tr>
+        <tr><td></td><td style="color:red"><small>${emailError}</small></td></tr>
+        <tr><td style="text-align:right;">Password: </td><td><input type="password" name="password"></td></tr>
+        <tr><td style="text-align:right;">Confirm Password: </td><td><input type="password" name="password2"></td></tr>
+        <tr><td></td><td style="color:red"><small>${passMatchError}</small></td></tr>
+        <tr><td colspan="2" style="text-align:center;"><input type="submit" value="Submit"></td></tr>
     </table>
 </form>
 

@@ -15,34 +15,31 @@
 <div id="banner">Recipe Roots</div>
 <div id="nav">
     <form>&nbsp Search Recipes:<input type="text" size="15" name="search"></form>
-    <a href="#">Home</a>
-    <a href="#">Browse Recipes</a>
+    <a href="/home">Home</a>
+    <a href="/browse">Browse Recipes</a>
     <a href="/myrecipes">My Recipes</a>
-    <a href="/login">Log In</a>
+    ${logInLink}
 
 </div>
 
 <div class="featured_recipes">
-    <h1>Featured Recipes</h1>
+    <h1>Featured Recipe</h1>
     <div class="recipe_display">
-        <h3>Honey Brew Root Beer</h3>
+        <h3>${recipe1.title}</h3>
+        <h4>Created by: <a href="mailto:${recipe1.user.email}">${recipe1.user.name}</a></h4>
         <p>
-        This is where the recipe goes. The description, the ingredients, the instructions.
-            Everything you need to know about making Honey brew Root Beer is right here
-            in this section. Boy, I sure love Root Beer. In fact, I could go for some now.
+            ${recipe1.recipe}
         </p>
     </div>
 </div>
 <div class="featured_recipes">
-    <h1>Recent Recipes</h1>
+    <h1>Most Recent Recipe</h1>
     <div class="recipe_display">
-        <h3>West Mexican Explosion</h3>
-        <p>
-            This is where the recipe goes. The description, the ingredients, the instructions.
-            Everything you need to know about making a Baja Blast clone is right here
-            in this section. Boy, I sure love Baja Blast. In fact, I think Taco Bell is extremely selfish
-            in the way they hoard all of the Baja Blast. That is why I need to crack the formula!
-        </p>
+        <h3>${recipe2.title}</h3>
+        <h4>Created by: <a href="mailto:${recipe2.user.email}">${recipe2.user.name}</a></h3>
+            <p>
+                ${recipe2.recipe}
+            </p>
     </div>
 </div>
 

@@ -17,9 +17,9 @@
 <div id="nav">
     <form>&nbsp Search Recipes:<input type="text" size="15" name="search"></form>
     <a href="/home">Home</a>
-    <a href="#">Browse Recipes</a>
+    <a href="/browse">Browse Recipes</a>
     <a href="/myrecipes">My Recipes</a>
-    <a href="/login">Log In</a>
+   ${logInLink}
 
 </div>
 <div id="section_main">
@@ -28,48 +28,18 @@
     <h1>My Recipes</h1>
 
     <c:forEach items="${recipes}" var="recipe">
-    <div class="recipe">${recipe.title} (${recipe.createdOn})
+    <div class="recipe"><strong>${recipe.title}</strong> <small><i>(last updated: ${recipe.createdOn})</i></small>
         <span class="options">
         <a href="${pageContext.request.contextPath}/viewrecipe?id=${recipe.id}">view</a> .
-        <a href="#">edit</a> .
-        <a href="#">delete</a>
+        <a href="${pageContext.request.contextPath}/edit?isNew=false&id=${recipe.id}">edit</a> .
+        <a href="${pageContext.request.contextPath}/delete?id=${recipe.id}&title=${recipe.title}">delete</a>
         </span>
     </div>
     </c:forEach>
 
     <div id="recipes_toolbar">
-        <a href="#">add </a>
+        <a href="${pageContext.request.contextPath}/edit?isNew=true&id=${recipe.id}">add</a>
     </div>
-
-
-
-
-   <!-- <table>
-
-        <tr><td><h3>My Recipes</h3></td></tr>
-        <tr><td>Honey Brew Root Beer</td>
-            <td><a href="#">view</a> .</td>
-            <td><a href="#">edit</a> .</td>
-            <td><a href="#">delete</a></td>
-        </tr>
-        <tr><td>Tahitian Vanilla Cream Soda</td>
-            <td><a href="#">view</a> .</td>
-            <td><a href="#">edit</a> .</td>
-            <td><a href="#">delete</a></td>
-        </tr>
-        <tr><td>West Mexican Explosion</td>
-            <td><a href="#">view</a> .</td>
-            <td><a href="#">edit</a> .</td>
-            <td><a href="#">delete</a></td>
-        </tr>
-        <tr><td>Butter Brew Cream Soda</td>
-            <td><a href="#">view</a> .</td>
-            <td><a href="#">edit</a> .</td>
-            <td><a href="#">delete</a></td>
-        </tr>
-    </table>
--->
-
 </div>
 
 
