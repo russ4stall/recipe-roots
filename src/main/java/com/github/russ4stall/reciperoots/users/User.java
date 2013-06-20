@@ -1,4 +1,4 @@
-package com.github.russ4stall.reciperoots;
+package com.github.russ4stall.reciperoots.users;
 
 import java.util.Date;
 

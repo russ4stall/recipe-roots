@@ -5,9 +5,20 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>com.github.russ4stall.reciperoots.users.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/myrecipes</url-pattern>
+        <url-pattern>/edit</url-pattern>
+        <url-pattern>/delete</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>com.github.russ4stall.reciperoots.LoginServlet</servlet-class>
+        <servlet-class>com.github.russ4stall.reciperoots.users.servlets.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -16,7 +27,7 @@
 
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>com.github.russ4stall.reciperoots.RegisterServlet</servlet-class>
+        <servlet-class>com.github.russ4stall.reciperoots.users.servlets.RegisterServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
@@ -25,7 +36,7 @@
 
     <servlet>
         <servlet-name>MyRecipesServlet</servlet-name>
-        <servlet-class>com.github.russ4stall.reciperoots.MyRecipesServlet</servlet-class>
+        <servlet-class>com.github.russ4stall.reciperoots.recipes.servlets.MyRecipesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MyRecipesServlet</servlet-name>
@@ -34,7 +45,7 @@
 
     <servlet>
         <servlet-name>HomeServlet</servlet-name>
-        <servlet-class>com.github.russ4stall.reciperoots.HomeServlet</servlet-class>
+        <servlet-class>com.github.russ4stall.reciperoots.recipes.HomeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
@@ -43,7 +54,7 @@
 
     <servlet>
         <servlet-name>ViewRecipeServlet</servlet-name>
-        <servlet-class>com.github.russ4stall.reciperoots.ViewRecipeServlet</servlet-class>
+        <servlet-class>com.github.russ4stall.reciperoots.recipes.servlets.ViewRecipeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ViewRecipeServlet</servlet-name>
@@ -51,17 +62,17 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>EditServlet</servlet-name>
-        <servlet-class>com.github.russ4stall.reciperoots.EditServlet</servlet-class>
+        <servlet-name>AddEditServlet</servlet-name>
+        <servlet-class>com.github.russ4stall.reciperoots.recipes.servlets.AddEditRecipeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>EditServlet</servlet-name>
+        <servlet-name>AddEditServlet</servlet-name>
         <url-pattern>/edit</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>DeleteServlet</servlet-name>
-        <servlet-class>com.github.russ4stall.reciperoots.DeleteServlet</servlet-class>
+        <servlet-class>com.github.russ4stall.reciperoots.recipes.servlets.DeleteRecipeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteServlet</servlet-name>
@@ -70,7 +81,7 @@
 
     <servlet>
         <servlet-name>BrowseServlet</servlet-name>
-        <servlet-class>com.github.russ4stall.reciperoots.BrowseServlet</servlet-class>
+        <servlet-class>com.github.russ4stall.reciperoots.recipes.servlets.BrowseRecipesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>BrowseServlet</servlet-name>
@@ -79,7 +90,7 @@
 
     <servlet>
         <servlet-name>LogOutServlet</servlet-name>
-        <servlet-class>com.github.russ4stall.reciperoots.LogOutServlet</servlet-class>
+        <servlet-class>com.github.russ4stall.reciperoots.users.servlets.LogOutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LogOutServlet</servlet-name>

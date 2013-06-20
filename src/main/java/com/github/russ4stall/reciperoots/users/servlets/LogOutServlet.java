@@ -1,4 +1,4 @@
-package com.github.russ4stall.reciperoots;
+package com.github.russ4stall.reciperoots.users.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

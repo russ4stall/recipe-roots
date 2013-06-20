@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: russellf
-  Date: 6/13/13
-  Time: 10:50 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="rr" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,14 +7,7 @@
 </head>
 <body>
 <div id="banner">Recipe Roots</div>
-<div id="nav">
-    <form>&nbsp Search Recipes:<input type="text" size="15" name="search"></form>
-    <a href="/home">Home</a>
-    <a href="/browse">Browse Recipes</a>
-    <a href="/myrecipes">My Recipes</a>
-    ${logInLink}
-
-</div>
+<rr:navigation></rr:navigation>
 <div id="section_main">
 
 

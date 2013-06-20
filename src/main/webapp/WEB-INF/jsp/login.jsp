@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: russellf
-  Date: 6/11/13
-  Time: 1:53 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="rr" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,14 +7,7 @@
 </head>
 <body>
 <div id="banner">Recipe Roots</div>
-<div id="nav">
-    <form>&nbsp Search Recipes:<input type="text" size="15" name="search"></form>
-    <a href="/home">Home</a>
-    <a href="/browse">Browse Recipes</a>
-    <a href="/myrecipes">My Recipes</a>
-    ${logInLink}
-
-</div>
+<rr:navigation></rr:navigation>
 
 <form id="login_register" action="${pageContext.request.contextPath}/login" method="post">
     <table>
@@ -32,7 +19,7 @@
         <tr><td>&nbsp</td></tr>
         <tr><td colspan="2" style="text-align:center">Not a member? <a href="/register?passMatch=true&emailMatch=true">Sign Up</a></td></tr>
     </table>
-
+${sessionScope.user}
 
 </form>
 
