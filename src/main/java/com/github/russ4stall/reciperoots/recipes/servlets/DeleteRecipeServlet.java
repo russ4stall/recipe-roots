@@ -1,7 +1,9 @@
 package com.github.russ4stall.reciperoots.recipes.servlets;
 
+import com.github.russ4stall.reciperoots.recipes.Recipe;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDao;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDaoImpl;
+import com.github.russ4stall.reciperoots.users.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,12 +27,33 @@ public class DeleteRecipeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String logInLink = null;
         HttpSession session = req.getSession(false);
+
+        String sRecipeId = req.getParameter("id");
+        int recipeId = Integer.valueOf(sRecipeId);
+
+        RecipesDao recipesDao = new RecipesDaoImpl();
+        Recipe recipe = recipesDao.getRecipe(recipeId);
+
+        User user;
+
         if(session == null || session.getAttribute("user") == null){
             resp.sendRedirect("/login?validUser=true");
             return;
 
         }else{
+            user = (User) session.getAttribute("user");
+            User recipeUser = recipe.getUser();
+            String nameDisplay = "Logged in as " + user.getName();
+            req.setAttribute("nameDisplay", nameDisplay);
             logInLink = "<a href=\"/logout\">Log Out</a>";
+
+            String loggedInAs = "Logged in as " + user.getName();
+            req.setAttribute("loggedInAs", loggedInAs);
+
+            if(recipeUser.getId()!=user.getId()){
+                resp.sendRedirect("/myrecipes");
+                return;
+            }
         }
         req.setAttribute("logInLink", logInLink);
 

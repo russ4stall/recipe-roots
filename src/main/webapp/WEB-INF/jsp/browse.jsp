@@ -7,26 +7,32 @@
     <link rel="stylesheet" type="text/css" href="/recipe_roots_styles.css">
 </head>
 <body>
-<div id="banner">Recipe Roots</div>
-<rr:navigation></rr:navigation>
-<div id="section_main">
+<div id="banner">
 
+
+    <div id="title">Recipe Roots</div>
+    <rr:navigation></rr:navigation>
+    <div id="search">
+        <form action="/search" method="get"><input type="submit" value="Search"><input type="text" size="15" name="search" value="Search Recipes"></form>
+    </div>
+</div>
+<div id="section_main">
 
     <h1>All Recipes</h1>
 
     <c:forEach items="${recipes}" var="recipe">
-        <div class="recipe"><strong>${recipe.title}</strong> <small>By: ${recipe.user.name} <i>(${recipe.createdOn})</i></small>
+        <div class="recipe">
+            <a id="recipe_title_link" href="${pageContext.request.contextPath}/viewrecipe?id=${recipe.id}">
+                ${recipe.title} </a><small> By: ${recipe.user.name}<i>(${recipe.createdOn})</i></small>
         <span class="options">
         <a href="${pageContext.request.contextPath}/viewrecipe?id=${recipe.id}">view</a>
         </span>
         </div>
     </c:forEach>
 
-    <div id="recipes_toolbar">
-        <a href="${pageContext.request.contextPath}/edit?isNew=true&id=${recipe.id}">add</a>
-    </div>
 </div>
 
 
 </body>
+
 </html>

@@ -86,6 +86,7 @@ public class UsersDaoImpl implements UsersDao {
             user.setEmail(resultSet.getString("email"));
             user.setPassword(resultSet.getString("password"));
 
+
             if (Objects.equal(password, user.getPassword())){
                 query = "UPDATE users SET last_login_on = now() WHERE email=?";
                 preparedStatement = connection.prepareStatement(query);

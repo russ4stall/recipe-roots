@@ -12,7 +12,13 @@
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/myrecipes</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
         <url-pattern>/edit</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
         <url-pattern>/delete</url-pattern>
     </filter-mapping>
 
@@ -24,7 +30,14 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>AddCommentServlet</servlet-name>
+        <servlet-class>com.github.russ4stall.reciperoots.comments.AddCommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddCommentServlet</servlet-name>
+        <url-pattern>/addcomment</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>com.github.russ4stall.reciperoots.users.servlets.RegisterServlet</servlet-class>

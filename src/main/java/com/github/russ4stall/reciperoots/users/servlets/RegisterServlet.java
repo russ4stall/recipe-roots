@@ -1,5 +1,6 @@
 package com.github.russ4stall.reciperoots.users.servlets;
 
+import com.github.russ4stall.reciperoots.users.User;
 import com.github.russ4stall.reciperoots.users.dao.UsersDao;
 import com.github.russ4stall.reciperoots.users.dao.UsersDaoImpl;
 import com.google.common.base.Objects;
@@ -22,15 +23,6 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String logInLink = null;
-        HttpSession session = req.getSession(false);
-        if (session == null || session.getAttribute("user") == null) {
-            logInLink = "<a href=\"/login?validUser=true\">Log In</a>";
-        } else {
-            logInLink = "<a href=\"/logout\">Log Out</a>";
-        }
-        req.setAttribute("logInLink", logInLink);
-
 
         String sPassMatch = req.getParameter("passMatch");
         boolean passMatch = Boolean.valueOf(sPassMatch);
@@ -40,6 +32,19 @@ public class RegisterServlet extends HttpServlet {
         boolean emailExists = Boolean.valueOf(sEmailExists);
         String emailError = null;
         String passMatchError = null;
+        String logInLink = null;
+        HttpSession session = req.getSession(false);
+        if(session == null || session.getAttribute("user") == null){
+            logInLink = "<a href=\"/login?validUser=true\">Log In</a>";
+            String signUpLink = "<a href=\"/register?passMatch=true&emailMatch=true\">Sign Up</a>";
+            req.setAttribute("signUpLink", signUpLink);
+        }else{
+            logInLink = "<a href=\"/logout\">Log Out</a>";
+        }
+        req.setAttribute("logInLink", logInLink);
+
+
+
         if (emailExists) {
             emailError = "That email already exists";
         } else {

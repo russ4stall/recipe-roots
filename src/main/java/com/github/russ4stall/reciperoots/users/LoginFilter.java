@@ -26,13 +26,11 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest)req;
         HttpServletResponse response = (HttpServletResponse)resp;
         HttpSession session = request.getSession(false);
-
         if(session == null || session.getAttribute("user") == null){
-
-
             response.sendRedirect("/login?validUser=true");
             return;
         }
+        //request.setAttribute();
 
         chain.doFilter(req, resp);
     }

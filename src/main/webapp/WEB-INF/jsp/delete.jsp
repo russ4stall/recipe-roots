@@ -6,8 +6,15 @@
     <link rel="stylesheet" type="text/css" href="/recipe_roots_styles.css">
 </head>
 <body>
-<div id="banner">Recipe Roots</div>
-<rr:navigation></rr:navigation>
+<div id="banner">
+
+
+    <div id="title">Recipe Roots</div>
+    <rr:navigation></rr:navigation>
+    <div id="search">
+        <form action="/search" method="get"><input type="submit" value="Search"><input type="text" size="15" name="search" value="Search Recipes"></form>
+    </div>
+</div>
 <div id="section_main">
 
 

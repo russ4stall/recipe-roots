@@ -24,19 +24,26 @@ public class AddEditRecipeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String logInLink = null;
         HttpSession session = req.getSession(false);
+        User user;
+        RecipesDao recipesDao = new RecipesDaoImpl();
         if(session == null || session.getAttribute("user") == null){
             resp.sendRedirect("/login?validUser=true");
             return;
         }else{
+            user = (User) session.getAttribute("user");
+            String nameDisplay = "Logged in as " + user.getName();
+            req.setAttribute("nameDisplay", nameDisplay);
             logInLink = "<a href=\"/logout\">Log Out</a>";
+
+            String loggedInAs = "Logged in as " + user.getName();
+            req.setAttribute("loggedInAs", loggedInAs);
+
         }
         req.setAttribute("logInLink", logInLink);
-        User user = (User) session.getAttribute("user");
         String sIsNew = req.getParameter("isNew");
         boolean isNew = Boolean.parseBoolean(sIsNew);
 
         String recipeField;
-        RecipesDao recipesDao = new RecipesDaoImpl();
         if(!isNew){
             String sRecipeId = req.getParameter("id");
             int recipeId = Integer.valueOf(sRecipeId);
@@ -44,8 +51,15 @@ public class AddEditRecipeServlet extends HttpServlet {
             recipe = recipesDao.getRecipe(recipeId);
             req.setAttribute("recipeTitle", recipe.getTitle());
             recipeField = recipe.getRecipe();
+            User recipeUser = recipe.getUser();
+            if(user.getId() != recipeUser.getId()){
+                resp.sendRedirect("/myrecipes");
+                return;
+            }
         } else {
-            recipeField = "<p>This is where the description your recipes goes.</p> \n" +
+
+            req.setAttribute("recipeTitle", "Recipe Title");
+            recipeField = "<p>This is where the description of your recipe goes.</p> \n" +
                     "<p>List of ingredients:</p>\n" +
                     "<li>ingredient</li>\n<li>ingredient</li>\n<li>ingredient</li>\n<li>ingredient</li>\n" +
                     "<li>ingredient</li>\n<li>ingredient</li>\n<p>Anything else you wanna add.</p>";

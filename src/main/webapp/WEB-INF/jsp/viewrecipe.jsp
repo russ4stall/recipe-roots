@@ -8,9 +8,17 @@
     <link rel="stylesheet" type="text/css" href="/recipe_roots_styles.css">
 </head>
 <body>
-<div id="banner">Recipe Roots</div>
+<div id="banner">
 
-<rr:navigation></rr:navigation>
+
+    <div id="title">Recipe Roots</div>
+    <rr:navigation></rr:navigation>
+    <div id="search">
+        <form action="/search" method="get"><input type="submit" value="Search"><input type="text" size="15" name="search" value="Search Recipes"></form>
+    </div>
+</div>
+
+
 <div class="featured_recipes">
     <h1>${recipe.title}</h1>
 
@@ -20,15 +28,48 @@
         <p>
             ${recipe.recipe}
         </p>
-    </div>
+
 <c:if test="${isUserIdSame}">
     <span class="options">
         <a href="${pageContext.request.contextPath}/edit?isNew=false&id=${recipe.id}">edit</a> .
         <a href="${pageContext.request.contextPath}/delete?id=${recipe.id}&title=${recipe.title}">delete</a>
     </span>
 </c:if>
-</div>
+    </div>
+    </div>
 
+
+<div id="divider"></div>
+<div id="comments">
+    <h3>Comments:</h3>
+    <div id="comment_form">
+        <c:if test="${isLoggedIn}">
+            <form action="/addcomment" method="post">
+                <textarea cols="40" rows="6" name="comment">Hey ${user.name}! Leave a comment...</textarea>
+                <br>
+                <input type="hidden" name="recipeId" value="${recipe.id}">
+                <input type="submit" value="Post">
+            </form>
+        </c:if>
+    </div>
+        <c:forEach items="${commentList}" var="comment">
+
+            <div id="comment">
+                <small style="color: darkblue"><em>${comment.createdOn}</em></small>
+                <div style="margin-top: 10px;">${comment.comment}</div>
+                <br>
+                <small> Comment by: </small><a href="mailto:${comment.user.email}" style="color:darkblue;">${comment.user.name}</a>
+
+                <c:if test="${comment.user.id == user.id}">
+
+                <a style="padding-left: 180px;" href="/deletecomment?id=${comment.id}">delete</a>
+                </c:if>
+            </div>
+        </c:forEach>
+
+
+
+    </div>
 
 </body>
 </html>

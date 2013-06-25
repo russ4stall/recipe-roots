@@ -1,29 +1,110 @@
+html {overflow-y: scroll;
+}
+a {
+    color: darkblue;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+    color: maroon;
+}
+
 body {
     width: 960px;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
+    background-image: url('ticks.png');
     background-color: cornsilk;
 }
 
 #banner {
     color: black;
     font-family: Georgia;
-    font-size: 50px;
-    background-color: sandybrown;
-    text-align: center;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 20px;
+    width: 960px;
+    height: 90px;
+    border-bottom: 2px solid maroon ;
+   margin-bottom: 20px;
 
 }
 
+#name_display {
+    margin-top: 35px;
+    margin-left: 170px;
+    float: left;
+    font-family: Arial;
+    font-size: 12px;
+
+
+}
+
+#title {
+    /*padding-left: 335px;*/
+
+    color: crimson;
+    text-shadow:2px 2px maroon;
+    margin-bottom: 10px;
+    font-size: 50px;
+
+}
+
+#search {
+   /* margin-left: 60px;*/
+    margin-top:-10px;
+    float: right;
+    width:200px;
+}
+
+#nav {
+    float: left;
+    padding-left: 10px;
+    /*border: 1px solid red;*/
+}
+#nav form {
+
+    padding: 8px;
+    /*border: 1px solid red;*/
+}
+
+#nav a {
+    /*display: block;*/
+    width: 126px;
+
+    color: black;
+    text-decoration: none;
+    margin-right: 15px;
+    font-family: arial;
+  /*  border: 1px solid red;*/
+}
+
+#nav small{
+    font-style: italic;
+    font-family: Arial;
+    padding-left: 10px;
+
+}
+
+#nav a:hover{
+    text-decoration: underline;
+
+
+}
+
+#about {
+    font-family: Arial;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid maroon;
+}
+
 #login_register {
-    margin-right: auto;
-    margin-left: auto;
+    float: left;
     width: 300px;
-    padding: 20px;
-    border: 3px double saddlebrown;
+    padding: 10px;
+    border: 3px double maroon;
 }
 #login_register table {
     margin-left: auto;
@@ -31,79 +112,91 @@ body {
 }
 h1 {
     margin-top: 0px;
-    font-size: 30px;
-    font-family: Arial;
-    color: saddlebrown;
-    /*border: 1px solid red;*/
+    font-size: 20px;
 
+    color: black;
 }
 
 #section_main{
     display: block;
     float: left;
-    margin-left: 20px;
+    margin-bottom: 40px;
  /*  border: 1px solid red;*/
 
 }
 
-.recipe {
-    padding: 2px;
-    margin-bottom: 5px;
-    background-color: bisque;
-    width: 500px;
+.recipe_display {
+
 }
 
 .options {
     float: right;
 }
+#divider{
+    float: left;
+    width:1px;
+    height:500px;
+    margin-right: 20px;
+    border-right: 2px solid maroon;
+    box-shadow: 2px 2px 8px #888888;
+
+}
+
+#comments {
+    width:360px;
+    float: left;
+    margin-top: -20px;
+}
+
+#comment {
+    background-color: whitesmoke;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    width: 360px;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    box-shadow: 3px 3px 8px #888888;
+}
+
+
+
+#recipe_title_link {
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+
+#recipe_title_link:hover {
+    text-decoration: underline;
+}
 
 #recipes_toolbar {
+    color: white;
     font-family: arial;
     padding: 2px;
+    margin-top: 15px;
     margin-bottom: 5px;
-    background-color: bisque;
-    width: 500px;
+    background-color: maroon;
+    width: 506px;
     height: 40px;
     line-height: 30px;
 }
 #recipes_toolbar a {
+    color: white;
     padding-right: 5px;
     float: right;
 }
 
-#nav {
-    float: left;
-    width: 148px;
-    height: 426px;
-    background-color: gainsboro;
-    /*border: 1px solid red;*/
-}
-#nav form {
-    display: block;
-    padding: 8px;
-  /*border: 1px solid red;*/
- }
-
-#nav a {
-    display: block;
-    width: 126px;
-    padding-left: 10px;
-    margin-bottom: 10px;
-    text-decoration: none;
-    font-weight: bold;
-    color: darkblue;
-    font-family: arial;
-  /*  border: 1px solid red;*/
-}
-
 .featured_recipes {
     float: left;
+    background-color: whitesmoke;
     width: 360px;
-    background-color: cornsilk;
     padding: 10px;
-    margin-left: 20px;
+    margin-right: 20px;
     min-height: 400px;
-    border: 3px double sandybrown;
+    box-shadow: 3px 3px 8px #888888;
 
 }
 
@@ -112,4 +205,11 @@ h1 {
     float: left;
     margin-right: 10px;
    /* border: 1px solid red;*/
+}
+
+.recipe{
+    width: 500px;
+    border-bottom: 1px solid maroon;
+    padding: 5px;
+
 }
