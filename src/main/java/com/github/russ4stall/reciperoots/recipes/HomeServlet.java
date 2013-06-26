@@ -1,6 +1,6 @@
 package com.github.russ4stall.reciperoots.recipes;
 
-import com.github.russ4stall.reciperoots.recipes.dao.RecipesDAO;
+import com.github.russ4stall.reciperoots.recipes.dao.RecipesDao;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDaoImpl;
 import com.github.russ4stall.reciperoots.users.User;
 
@@ -34,12 +34,13 @@ public class HomeServlet extends HttpServlet {
             String nameDisplay = "Logged in as " + user.getName();
             req.setAttribute("nameDisplay", nameDisplay);
             logInLink = "<a href=\"/logout\">Log Out</a>";
-
+            String myRecipesLink = "<a href=\"/myrecipes\">My Recipes</a>";
+            req.setAttribute("myRecipesLink", myRecipesLink);
             String loggedInAs = "Logged in as " + user.getName();
             req.setAttribute("loggedInAs", loggedInAs);
         }
         req.setAttribute("logInLink", logInLink);
-        RecipesDAO recipesDao = new RecipesDaoImpl();
+        RecipesDao recipesDao = new RecipesDaoImpl();
 
         Recipe randomRecipe = recipesDao.getRandomRecipe();
         Recipe latestRecipe = recipesDao.getLatestRecipe();

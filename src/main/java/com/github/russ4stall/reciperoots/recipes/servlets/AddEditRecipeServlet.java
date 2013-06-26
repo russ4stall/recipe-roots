@@ -1,7 +1,7 @@
 package com.github.russ4stall.reciperoots.recipes.servlets;
 
 import com.github.russ4stall.reciperoots.recipes.Recipe;
-import com.github.russ4stall.reciperoots.recipes.dao.RecipesDAO;
+import com.github.russ4stall.reciperoots.recipes.dao.RecipesDao;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDaoImpl;
 import com.github.russ4stall.reciperoots.users.User;
 
@@ -24,7 +24,7 @@ public class AddEditRecipeServlet extends HttpServlet {
         String logInLink = null;
         HttpSession session = req.getSession(false);
         User user;
-        RecipesDAO recipesDao = new RecipesDaoImpl();
+        RecipesDao recipesDao = new RecipesDaoImpl();
         if(session == null || session.getAttribute("user") == null){
             resp.sendRedirect("/login?validUser=true");
             return;
@@ -33,7 +33,8 @@ public class AddEditRecipeServlet extends HttpServlet {
             String nameDisplay = "Logged in as " + user.getName();
             req.setAttribute("nameDisplay", nameDisplay);
             logInLink = "<a href=\"/logout\">Log Out</a>";
-
+            String myRecipesLink = "<a href=\"/myrecipes\">My Recipes</a>";
+            req.setAttribute("myRecipesLink", myRecipesLink);
             String loggedInAs = "Logged in as " + user.getName();
             req.setAttribute("loggedInAs", loggedInAs);
 
@@ -72,7 +73,7 @@ public class AddEditRecipeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RecipesDAO recipesDao = new RecipesDaoImpl();
+        RecipesDao recipesDao = new RecipesDaoImpl();
         String sIsNew = req.getParameter("isNew");
         boolean isNew = Boolean.parseBoolean(sIsNew);
 

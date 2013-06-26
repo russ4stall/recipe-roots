@@ -4,7 +4,8 @@
 
     <a href="/home">Home</a>
     <a href="/browse">Browse Recipes</a>
-    <a href="/myrecipes">My Recipes</a>
+    <a href="/search">Search</a>
+    ${myRecipesLink}
     ${logInLink}
     ${signUpLink}
     <small>${loggedInAs}</small>

@@ -12,8 +12,11 @@
     <div id="title">Recipe Roots</div>
     <rr:navigation></rr:navigation>
     <div id="search">
-        <form action="/search" method="get"><input type="submit" value="Search"><input type="text" size="15" name="search" value="Search Recipes"></form>
-    </div>
+    <form action="/search" method="get"><input type="submit" value="Search">
+        <input type="hidden" name="byType" value="recipe">
+        <input type="text" size="15" name="search" placeholder="Search Recipes">
+    </form>
+</div>
 </div>
 <div id="section_main">
     <h1>Edit your recipe</h1>

@@ -3,7 +3,7 @@ package com.github.russ4stall.reciperoots.recipes.servlets;
 import com.github.russ4stall.reciperoots.comments.dao.CommentsDao;
 import com.github.russ4stall.reciperoots.comments.dao.CommentsDaoImpl;
 import com.github.russ4stall.reciperoots.recipes.Recipe;
-import com.github.russ4stall.reciperoots.recipes.dao.RecipesDAO;
+import com.github.russ4stall.reciperoots.recipes.dao.RecipesDao;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDaoImpl;
 import com.github.russ4stall.reciperoots.users.User;
 
@@ -31,7 +31,7 @@ public class ViewRecipeServlet extends HttpServlet {
         boolean isLoggedIn = false;
         String sRecipeId = req.getParameter("id");
         int recipeId = Integer.valueOf(sRecipeId);
-        RecipesDAO recipesDao = new RecipesDaoImpl();
+        RecipesDao recipesDao = new RecipesDaoImpl();
         Recipe recipe = recipesDao.getRecipe(recipeId);
         CommentsDao commentsDao = new CommentsDaoImpl();
         List commentList = commentsDao.getAllComments(recipeId);
@@ -53,6 +53,9 @@ public class ViewRecipeServlet extends HttpServlet {
             isUserIdSame = (recipeUser.getId()==user.getId());
             logInLink = "<a href=\"/logout\">Log Out</a>";
             isLoggedIn = true;
+            String myRecipesLink = "<a href=\"/myrecipes\">My Recipes</a>";
+            req.setAttribute("myRecipesLink", myRecipesLink);
+
             String loggedInAs = "Logged in as " + user.getName();
             req.setAttribute("loggedInAs", loggedInAs);
 

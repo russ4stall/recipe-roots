@@ -1,10 +1,11 @@
 package com.github.russ4stall.reciperoots;
 
+import com.github.russ4stall.reciperoots.recipes.Recipe;
+import com.github.russ4stall.reciperoots.recipes.dao.RecipesDao;
+import com.github.russ4stall.reciperoots.recipes.dao.RecipesDaoImpl;
+import com.github.russ4stall.reciperoots.users.User;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.StringField;
-import org.apache.lucene.document.TextField;
+import org.apache.lucene.document.*;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.*;
@@ -15,6 +16,8 @@ import javax.servlet.ServletContextListener;
 import java.io.File;
 import java.io.IOException;
 import java.lang.String;
+import java.util.List;
+
 /**
  * Date: 6/26/13
  * Time: 10:42 AM
@@ -23,10 +26,13 @@ import java.lang.String;
  */
 public class MyListener implements ServletContextListener {
 
-    private static void addDoc(IndexWriter w, String title, String isbn) throws IOException {
+    private static void addDoc(IndexWriter w, Recipe recipe) throws IOException {
         Document doc = new Document();
-        doc.add(new TextField("title", title, Field.Store.YES));
-        doc.add(new StringField("isbn", isbn, Field.Store.YES));
+        User user = recipe.getUser();
+        doc.add(new TextField("recipe", recipe.getRecipe(), Field.Store.YES));
+        doc.add(new TextField("recipeTitle", recipe.getTitle(), Field.Store.YES));
+        doc.add(new IntField("recipeId", recipe.getId(), Field.Store.YES));
+        doc.add(new TextField("recipeAuthor", user.getName(), Field.Store.YES));
         w.addDocument(doc);
     }
 
@@ -40,10 +46,14 @@ public class MyListener implements ServletContextListener {
             File file = new File("C:\\Users\\russellf\\Documents\\recipe-roots-index");
             SimpleFSDirectory index = new SimpleFSDirectory(file);
 
+            RecipesDao recipesDao = new RecipesDaoImpl();
+            List<Recipe> recipes = recipesDao.getAllRecipes();
             IndexWriter w = new IndexWriter(index , config);
-            addDoc(w, "Lucene in action", "321321321");
-            addDoc(w, "Banana Nuts", "780489");
-            addDoc(w, "Wooly Booly", "987654321");
+
+            for(Recipe recipe : recipes){
+                addDoc(w, recipe);
+            }
+
             w.close();
 
 

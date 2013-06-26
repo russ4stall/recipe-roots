@@ -2,7 +2,7 @@ package com.github.russ4stall.reciperoots.comments.dao;
 
 import com.github.russ4stall.reciperoots.comments.Comment;
 import com.github.russ4stall.reciperoots.users.User;
-import com.github.russ4stall.reciperoots.utilities.sqlUtilities;
+import com.github.russ4stall.reciperoots.utilities.SqlUtilities;
 
 import java.sql.*;
 import java.text.DateFormat;
@@ -24,7 +24,7 @@ public class CommentsDaoImpl implements CommentsDao{
 
     @Override
     public void addComment(String comment, int userId, int recipeId) {
-        sqlUtilities.jbdcUtil();
+        SqlUtilities.jbdcUtil();
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
@@ -42,8 +42,8 @@ public class CommentsDaoImpl implements CommentsDao{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            sqlUtilities.closeConnection(connection);
-            sqlUtilities.closePreparedStatement(preparedStatement);
+            SqlUtilities.closeConnection(connection);
+            SqlUtilities.closePreparedStatement(preparedStatement);
         }
     }
 
@@ -52,7 +52,7 @@ public class CommentsDaoImpl implements CommentsDao{
 
     @Override
     public void deleteComment(int id) {
-        sqlUtilities.jbdcUtil();
+        SqlUtilities.jbdcUtil();
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
             String query = "DELETE FROM comments WHERE id = ?";
@@ -63,8 +63,8 @@ public class CommentsDaoImpl implements CommentsDao{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            sqlUtilities.closePreparedStatement(preparedStatement);
-            sqlUtilities.closeConnection(connection);
+            SqlUtilities.closePreparedStatement(preparedStatement);
+            SqlUtilities.closeConnection(connection);
         }
     }
 
@@ -72,7 +72,7 @@ public class CommentsDaoImpl implements CommentsDao{
     public List getAllComments(int recipeId) {
         List<Comment> commentList = new ArrayList();
 
-        sqlUtilities.jbdcUtil();
+        SqlUtilities.jbdcUtil();
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
@@ -108,9 +108,9 @@ public class CommentsDaoImpl implements CommentsDao{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            sqlUtilities.closeConnection(connection);
-            sqlUtilities.closePreparedStatement(preparedStatement);
-            sqlUtilities.closeResultSet(resultSet);
+            SqlUtilities.closeConnection(connection);
+            SqlUtilities.closePreparedStatement(preparedStatement);
+            SqlUtilities.closeResultSet(resultSet);
         }
 
         return commentList;

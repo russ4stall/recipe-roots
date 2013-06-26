@@ -28,6 +28,14 @@
     </filter-mapping>
 
     <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>com.github.russ4stall.reciperoots.SearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.github.russ4stall.reciperoots.users.servlets.LoginServlet</servlet-class>
     </servlet>
