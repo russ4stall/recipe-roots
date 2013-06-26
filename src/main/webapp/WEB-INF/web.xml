@@ -5,6 +5,11 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
+    
+    <listener>
+        <listener-class>com.github.russ4stall.reciperoots.MyListener</listener-class>
+    </listener>
+
     <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>com.github.russ4stall.reciperoots.users.LoginFilter</filter-class>
@@ -37,6 +42,14 @@
     <servlet-mapping>
         <servlet-name>AddCommentServlet</servlet-name>
         <url-pattern>/addcomment</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteCommentServlet</servlet-name>
+        <servlet-class>com.github.russ4stall.reciperoots.comments.DeleteCommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteCommentServlet</servlet-name>
+        <url-pattern>/deletecomment</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>

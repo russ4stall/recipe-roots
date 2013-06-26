@@ -1,4 +1,5 @@
 html {overflow-y: scroll;
+    margin: 0px;
 }
 a {
     color: darkblue;
@@ -11,13 +12,16 @@ a:hover{
 }
 
 body {
-    width: 960px;
-    margin-top: 10px;
+    width: 1000px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
     margin-left: auto;
     margin-right: auto;
     background-image: url('ticks.png');
     background-color: cornsilk;
 }
+
 
 #banner {
     color: black;
@@ -93,6 +97,7 @@ body {
 
 #about {
     font-family: Arial;
+    width: 920px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
@@ -125,9 +130,6 @@ h1 {
 
 }
 
-.recipe_display {
-
-}
 
 .options {
     float: right;
@@ -191,13 +193,20 @@ h1 {
 
 .featured_recipes {
     float: left;
-    background-color: whitesmoke;
+
     width: 360px;
-    padding: 10px;
+
     margin-right: 20px;
     min-height: 400px;
-    box-shadow: 3px 3px 8px #888888;
 
+}
+
+
+.recipe_display {
+    background-color: whitesmoke;
+    box-shadow: 3px 3px 8px #888888;
+    padding: 10px;
+    padding-bottom: 30px;
 }
 
 .float_me {

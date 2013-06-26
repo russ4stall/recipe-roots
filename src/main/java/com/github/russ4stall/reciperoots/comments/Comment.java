@@ -13,7 +13,7 @@ import java.util.Date;
 public class Comment {
     private User user;
     private String comment;
-    private Date createdOn;
+    private String createdOn;
     private int id;
     private int recipeId;
 
@@ -33,11 +33,11 @@ public class Comment {
         this.comment = comment;
     }
 
-    public Date getCreatedOn() {
+    public String getCreatedOn() {
         return createdOn;
     }
 
-    public void setCreatedOn(Date createdOn) {
+    public void setCreatedOn(String createdOn) {
         this.createdOn = createdOn;
     }
 

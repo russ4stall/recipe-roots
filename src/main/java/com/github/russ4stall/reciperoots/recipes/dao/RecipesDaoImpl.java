@@ -2,7 +2,7 @@ package com.github.russ4stall.reciperoots.recipes.dao;
 
 import com.github.russ4stall.reciperoots.recipes.Recipe;
 import com.github.russ4stall.reciperoots.users.User;
-import com.github.russ4stall.reciperoots.utilities.SqlUtilities;
+import com.github.russ4stall.reciperoots.utilities.sqlUtilities;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Russ Forstall
  */
-public class RecipesDaoImpl implements RecipesDao {
+public class RecipesDaoImpl implements RecipesDAO {
 
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -22,7 +22,7 @@ public class RecipesDaoImpl implements RecipesDao {
 
     @Override
     public void updateRecipe(int id, String title, String recipe) {
-        SqlUtilities.jbdcUtil();
+        sqlUtilities.jbdcUtil();
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
@@ -41,15 +41,15 @@ public class RecipesDaoImpl implements RecipesDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            SqlUtilities.closeConnection(connection);
-            SqlUtilities.closePreparedStatement(preparedStatement);
+            sqlUtilities.closeConnection(connection);
+            sqlUtilities.closePreparedStatement(preparedStatement);
         }
     }
 
 
     @Override
     public void addRecipe(String title, String recipe, int userId) {
-        SqlUtilities.jbdcUtil();
+        sqlUtilities.jbdcUtil();
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
@@ -67,15 +67,15 @@ public class RecipesDaoImpl implements RecipesDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            SqlUtilities.closeConnection(connection);
-            SqlUtilities.closePreparedStatement(preparedStatement);
+            sqlUtilities.closeConnection(connection);
+            sqlUtilities.closePreparedStatement(preparedStatement);
         }
     }
 
 
     @Override
     public void deleteRecipe(int id) {
-        SqlUtilities.jbdcUtil();
+        sqlUtilities.jbdcUtil();
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
@@ -90,8 +90,8 @@ public class RecipesDaoImpl implements RecipesDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            SqlUtilities.closePreparedStatement(preparedStatement);
-            SqlUtilities.closeConnection(connection);
+            sqlUtilities.closePreparedStatement(preparedStatement);
+            sqlUtilities.closeConnection(connection);
         }
     }
 
@@ -100,7 +100,7 @@ public class RecipesDaoImpl implements RecipesDao {
         Recipe recipe = new Recipe();
         User user = new User();
 
-        SqlUtilities.jbdcUtil();
+        sqlUtilities.jbdcUtil();
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
@@ -127,9 +127,9 @@ public class RecipesDaoImpl implements RecipesDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            SqlUtilities.closeConnection(connection);
-            SqlUtilities.closePreparedStatement(preparedStatement);
-            SqlUtilities.closeResultSet(resultSet);
+            sqlUtilities.closeConnection(connection);
+            sqlUtilities.closePreparedStatement(preparedStatement);
+            sqlUtilities.closeResultSet(resultSet);
         }
 
 
@@ -140,7 +140,7 @@ public class RecipesDaoImpl implements RecipesDao {
     public List getAllRecipes() {
         List<Recipe> recipeList = new ArrayList();
 
-        SqlUtilities.jbdcUtil();
+        sqlUtilities.jbdcUtil();
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
@@ -169,9 +169,9 @@ public class RecipesDaoImpl implements RecipesDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            SqlUtilities.closeConnection(connection);
-            SqlUtilities.closePreparedStatement(preparedStatement);
-            SqlUtilities.closeResultSet(resultSet);
+            sqlUtilities.closeConnection(connection);
+            sqlUtilities.closePreparedStatement(preparedStatement);
+            sqlUtilities.closeResultSet(resultSet);
         }
 
         return recipeList;
@@ -181,7 +181,7 @@ public class RecipesDaoImpl implements RecipesDao {
     public List getMyRecipes(int userId) {
         List<Recipe> recipeList = new ArrayList();
 
-        SqlUtilities.jbdcUtil();
+        sqlUtilities.jbdcUtil();
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
@@ -212,9 +212,9 @@ public class RecipesDaoImpl implements RecipesDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            SqlUtilities.closeConnection(connection);
-            SqlUtilities.closePreparedStatement(preparedStatement);
-            SqlUtilities.closeResultSet(resultSet);
+            sqlUtilities.closeConnection(connection);
+            sqlUtilities.closePreparedStatement(preparedStatement);
+            sqlUtilities.closeResultSet(resultSet);
         }
 
         return recipeList;
@@ -225,7 +225,7 @@ public class RecipesDaoImpl implements RecipesDao {
         Recipe recipe = new Recipe();
         User user = new User();
 
-        SqlUtilities.jbdcUtil();
+        sqlUtilities.jbdcUtil();
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
@@ -253,9 +253,9 @@ public class RecipesDaoImpl implements RecipesDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            SqlUtilities.closeConnection(connection);
-            SqlUtilities.closePreparedStatement(preparedStatement);
-            SqlUtilities.closeResultSet(resultSet);
+            sqlUtilities.closeConnection(connection);
+            sqlUtilities.closePreparedStatement(preparedStatement);
+            sqlUtilities.closeResultSet(resultSet);
         }
 
         return recipe;
@@ -266,7 +266,7 @@ public class RecipesDaoImpl implements RecipesDao {
         Recipe recipe = new Recipe();
         User user = new User();
 
-        SqlUtilities.jbdcUtil();
+        sqlUtilities.jbdcUtil();
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
@@ -294,9 +294,9 @@ public class RecipesDaoImpl implements RecipesDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            SqlUtilities.closeConnection(connection);
-            SqlUtilities.closePreparedStatement(preparedStatement);
-            SqlUtilities.closeResultSet(resultSet);
+            sqlUtilities.closeConnection(connection);
+            sqlUtilities.closePreparedStatement(preparedStatement);
+            sqlUtilities.closeResultSet(resultSet);
         }
 
         return recipe;

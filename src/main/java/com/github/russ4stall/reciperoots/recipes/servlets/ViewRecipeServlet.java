@@ -3,7 +3,7 @@ package com.github.russ4stall.reciperoots.recipes.servlets;
 import com.github.russ4stall.reciperoots.comments.dao.CommentsDao;
 import com.github.russ4stall.reciperoots.comments.dao.CommentsDaoImpl;
 import com.github.russ4stall.reciperoots.recipes.Recipe;
-import com.github.russ4stall.reciperoots.recipes.dao.RecipesDao;
+import com.github.russ4stall.reciperoots.recipes.dao.RecipesDAO;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDaoImpl;
 import com.github.russ4stall.reciperoots.users.User;
 
@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.*;
 import java.util.List;
 
 /**
@@ -32,11 +31,14 @@ public class ViewRecipeServlet extends HttpServlet {
         boolean isLoggedIn = false;
         String sRecipeId = req.getParameter("id");
         int recipeId = Integer.valueOf(sRecipeId);
-        RecipesDao recipesDao = new RecipesDaoImpl();
+        RecipesDAO recipesDao = new RecipesDaoImpl();
         Recipe recipe = recipesDao.getRecipe(recipeId);
         CommentsDao commentsDao = new CommentsDaoImpl();
         List commentList = commentsDao.getAllComments(recipeId);
-
+        if (commentList.size() < 1){
+            boolean noComments = true;
+            req.setAttribute("noComments", noComments);
+        }
         User user = new User();
 
         if(session == null || session.getAttribute("user") == null){

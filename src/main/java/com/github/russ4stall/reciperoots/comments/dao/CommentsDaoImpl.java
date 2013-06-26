@@ -1,11 +1,12 @@
 package com.github.russ4stall.reciperoots.comments.dao;
 
 import com.github.russ4stall.reciperoots.comments.Comment;
-import com.github.russ4stall.reciperoots.recipes.Recipe;
 import com.github.russ4stall.reciperoots.users.User;
-import com.github.russ4stall.reciperoots.utilities.SqlUtilities;
+import com.github.russ4stall.reciperoots.utilities.sqlUtilities;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class CommentsDaoImpl implements CommentsDao{
 
     @Override
     public void addComment(String comment, int userId, int recipeId) {
-        SqlUtilities.jbdcUtil();
+        sqlUtilities.jbdcUtil();
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
@@ -41,8 +42,8 @@ public class CommentsDaoImpl implements CommentsDao{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            SqlUtilities.closeConnection(connection);
-            SqlUtilities.closePreparedStatement(preparedStatement);
+            sqlUtilities.closeConnection(connection);
+            sqlUtilities.closePreparedStatement(preparedStatement);
         }
     }
 
@@ -51,14 +52,27 @@ public class CommentsDaoImpl implements CommentsDao{
 
     @Override
     public void deleteComment(int id) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        sqlUtilities.jbdcUtil();
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
+            String query = "DELETE FROM comments WHERE id = ?";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            sqlUtilities.closePreparedStatement(preparedStatement);
+            sqlUtilities.closeConnection(connection);
+        }
     }
 
     @Override
     public List getAllComments(int recipeId) {
         List<Comment> commentList = new ArrayList();
 
-        SqlUtilities.jbdcUtil();
+        sqlUtilities.jbdcUtil();
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
@@ -79,7 +93,10 @@ public class CommentsDaoImpl implements CommentsDao{
                 comment.setId(resultSet.getInt("id"));
                 comment.setRecipeId(resultSet.getInt("recipe_id"));
                 comment.setComment(resultSet.getString("comment"));
-                comment.setCreatedOn(resultSet.getDate("created_on"));
+                Timestamp timestamp = resultSet.getTimestamp("created_on");
+                DateFormat df =  new SimpleDateFormat("MMMM dd, yyyy h:mm a");
+                comment.setCreatedOn(df.format(timestamp));
+
                 user.setName(resultSet.getString("name"));
                 user.setRegisteredOn(resultSet.getDate("registered_on"));
                 user.setLastLoginOn(resultSet.getDate("last_login_on"));
@@ -91,9 +108,9 @@ public class CommentsDaoImpl implements CommentsDao{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            SqlUtilities.closeConnection(connection);
-            SqlUtilities.closePreparedStatement(preparedStatement);
-            SqlUtilities.closeResultSet(resultSet);
+            sqlUtilities.closeConnection(connection);
+            sqlUtilities.closePreparedStatement(preparedStatement);
+            sqlUtilities.closeResultSet(resultSet);
         }
 
         return commentList;

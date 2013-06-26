@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Russ Forstall
  */
-public interface RecipesDao {
+public interface RecipesDAO {
     /**
      * updates recipe in database
      *

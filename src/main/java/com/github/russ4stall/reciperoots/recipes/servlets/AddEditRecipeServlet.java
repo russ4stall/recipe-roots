@@ -1,7 +1,7 @@
 package com.github.russ4stall.reciperoots.recipes.servlets;
 
 import com.github.russ4stall.reciperoots.recipes.Recipe;
-import com.github.russ4stall.reciperoots.recipes.dao.RecipesDao;
+import com.github.russ4stall.reciperoots.recipes.dao.RecipesDAO;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDaoImpl;
 import com.github.russ4stall.reciperoots.users.User;
 
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.*;
 
 /**
  * Date: 6/13/13
@@ -25,7 +24,7 @@ public class AddEditRecipeServlet extends HttpServlet {
         String logInLink = null;
         HttpSession session = req.getSession(false);
         User user;
-        RecipesDao recipesDao = new RecipesDaoImpl();
+        RecipesDAO recipesDao = new RecipesDaoImpl();
         if(session == null || session.getAttribute("user") == null){
             resp.sendRedirect("/login?validUser=true");
             return;
@@ -73,7 +72,7 @@ public class AddEditRecipeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RecipesDao recipesDao = new RecipesDaoImpl();
+        RecipesDAO recipesDao = new RecipesDaoImpl();
         String sIsNew = req.getParameter("isNew");
         boolean isNew = Boolean.parseBoolean(sIsNew);
 

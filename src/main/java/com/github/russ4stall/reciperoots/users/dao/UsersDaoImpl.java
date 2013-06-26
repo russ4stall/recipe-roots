@@ -1,7 +1,7 @@
 package com.github.russ4stall.reciperoots.users.dao;
 
 import com.github.russ4stall.reciperoots.users.User;
-import com.github.russ4stall.reciperoots.utilities.SqlUtilities;
+import com.github.russ4stall.reciperoots.utilities.sqlUtilities;
 import com.google.common.base.Objects;
 
 import java.sql.*;
@@ -22,7 +22,7 @@ public class UsersDaoImpl implements UsersDao {
     public boolean emailExistsCheck(String email) {
         boolean emailExists = false;
 
-        SqlUtilities.jbdcUtil();
+        sqlUtilities.jbdcUtil();
 
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
@@ -36,9 +36,9 @@ public class UsersDaoImpl implements UsersDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            SqlUtilities.closePreparedStatement(preparedStatement);
-            SqlUtilities.closeResultSet(resultSet);
-            SqlUtilities.closeConnection(connection);
+            sqlUtilities.closePreparedStatement(preparedStatement);
+            sqlUtilities.closeResultSet(resultSet);
+            sqlUtilities.closeConnection(connection);
         }
         return emailExists;
     }
@@ -46,7 +46,7 @@ public class UsersDaoImpl implements UsersDao {
     @Override
     public void addUser(String name, String email, String password) {
 
-        SqlUtilities.jbdcUtil();
+        sqlUtilities.jbdcUtil();
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
             String query = "INSERT INTO users (name, email, password, registered_on, last_login_on) " +
@@ -62,8 +62,8 @@ public class UsersDaoImpl implements UsersDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            SqlUtilities.closePreparedStatement(preparedStatement);
-            SqlUtilities.closeConnection(connection);
+            sqlUtilities.closePreparedStatement(preparedStatement);
+            sqlUtilities.closeConnection(connection);
         }
 
     }
@@ -71,7 +71,7 @@ public class UsersDaoImpl implements UsersDao {
     @Override
     public User login(String email, String password) {
         User user = new User();
-        SqlUtilities.jbdcUtil();
+        sqlUtilities.jbdcUtil();
         String query = null;
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
@@ -97,9 +97,9 @@ public class UsersDaoImpl implements UsersDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            SqlUtilities.closePreparedStatement(preparedStatement);
-            SqlUtilities.closeConnection(connection);
-            SqlUtilities.closeResultSet(resultSet);
+            sqlUtilities.closePreparedStatement(preparedStatement);
+            sqlUtilities.closeConnection(connection);
+            sqlUtilities.closeResultSet(resultSet);
         }
 
             return user;

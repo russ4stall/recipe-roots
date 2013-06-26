@@ -6,8 +6,13 @@
 <head>
     <title>Recipe Roots</title>
     <link rel="stylesheet" type="text/css" href="/recipe_roots_styles.css">
+    <script>
+        function submitMyForm(){
+        document.forms["deleteComment"].submit();
+    }</script>
 </head>
 <body>
+
 <div id="banner">
 
 
@@ -20,9 +25,10 @@
 
 
 <div class="featured_recipes">
-    <h1>${recipe.title}</h1>
 
     <div class="recipe_display">
+        <h1>${recipe.title}</h1>
+
         <h3>Created by: <a href="mailto:${recipe.user.email}">${recipe.user.name}</a></h3>
 
         <p>
@@ -51,6 +57,9 @@
                 <input type="submit" value="Post">
             </form>
         </c:if>
+            <c:if test="${noComments}">
+                There are no comments for this recipe.
+            </c:if>
     </div>
         <c:forEach items="${commentList}" var="comment">
 
@@ -61,8 +70,11 @@
                 <small> Comment by: </small><a href="mailto:${comment.user.email}" style="color:darkblue;">${comment.user.name}</a>
 
                 <c:if test="${comment.user.id == user.id}">
-
-                <a style="padding-left: 180px;" href="/deletecomment?id=${comment.id}">delete</a>
+                    <form id="deleteComment" action="/deletecomment" method="post">
+                        <input type="hidden" name="commentId" value="${comment.id}">
+                        <input type="hidden" name="recipeId" value="${recipe.id}">
+                    </form>
+                <a style="padding-left: 180px;" href="#" onclick="submitMyForm()">delete</a>
                 </c:if>
             </div>
         </c:forEach>

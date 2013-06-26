@@ -1,6 +1,6 @@
 package com.github.russ4stall.reciperoots.recipes;
 
-import com.github.russ4stall.reciperoots.recipes.dao.RecipesDao;
+import com.github.russ4stall.reciperoots.recipes.dao.RecipesDAO;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDaoImpl;
 import com.github.russ4stall.reciperoots.users.User;
 
@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Date: 6/12/13
@@ -42,7 +39,7 @@ public class HomeServlet extends HttpServlet {
             req.setAttribute("loggedInAs", loggedInAs);
         }
         req.setAttribute("logInLink", logInLink);
-        RecipesDao recipesDao = new RecipesDaoImpl();
+        RecipesDAO recipesDao = new RecipesDaoImpl();
 
         Recipe randomRecipe = recipesDao.getRandomRecipe();
         Recipe latestRecipe = recipesDao.getLatestRecipe();

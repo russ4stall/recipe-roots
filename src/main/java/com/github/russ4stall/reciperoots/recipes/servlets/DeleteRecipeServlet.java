@@ -1,7 +1,7 @@
 package com.github.russ4stall.reciperoots.recipes.servlets;
 
 import com.github.russ4stall.reciperoots.recipes.Recipe;
-import com.github.russ4stall.reciperoots.recipes.dao.RecipesDao;
+import com.github.russ4stall.reciperoots.recipes.dao.RecipesDAO;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDaoImpl;
 import com.github.russ4stall.reciperoots.users.User;
 
@@ -11,10 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 /**
  * Date: 6/13/13
@@ -31,7 +27,7 @@ public class DeleteRecipeServlet extends HttpServlet {
         String sRecipeId = req.getParameter("id");
         int recipeId = Integer.valueOf(sRecipeId);
 
-        RecipesDao recipesDao = new RecipesDaoImpl();
+        RecipesDAO recipesDao = new RecipesDaoImpl();
         Recipe recipe = recipesDao.getRecipe(recipeId);
 
         User user;
@@ -65,7 +61,7 @@ public class DeleteRecipeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String sRecipeId = req.getParameter("id");
         int recipeId = Integer.valueOf(sRecipeId);
-        RecipesDao recipesDao = new RecipesDaoImpl();
+        RecipesDAO recipesDao = new RecipesDaoImpl();
         recipesDao.deleteRecipe(recipeId);
         resp.sendRedirect("/myrecipes");
     }

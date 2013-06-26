@@ -11,7 +11,7 @@ import java.sql.SQLException;
  *
  * @author Russ Forstall
  */
-public class SqlUtilities {
+public class sqlUtilities {
 
 
     public static void jbdcUtil() {

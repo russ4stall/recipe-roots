@@ -12,27 +12,35 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Date: 6/21/13
- * Time: 11:21 AM
+ * Date: 6/26/13
+ * Time: 9:12 AM
  *
  * @author Russ Forstall
  */
-public class AddCommentServlet extends HttpServlet {
-
+public class DeleteCommentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String comment = req.getParameter("comment");
-
         HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("user");
+
         String sRecipeId = req.getParameter("recipeId");
         int recipeId = Integer.valueOf(sRecipeId);
 
+        System.out.println(recipeId);
+
+        String sCommentId = req.getParameter("commentId");
+        int commentId = Integer.valueOf(sCommentId);
+
+        System.out.println(commentId);
+
 
         CommentsDao commentsDao = new CommentsDaoImpl();
-        commentsDao.addComment(comment, user.getId(), recipeId);
+        commentsDao.deleteComment(commentId);
 
         resp.sendRedirect("/viewrecipe?id=" + recipeId);
     }
+
+
+
 }
