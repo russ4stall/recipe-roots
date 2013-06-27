@@ -26,7 +26,7 @@ public interface RecipesDao {
      * @param recipe recipe text
      * @param userId numerical id of user
      */
-    void addRecipe(String title, String recipe, int userId);
+    int addRecipe(String title, String recipe, int userId);
 
     /**
      * deletes recipe from database

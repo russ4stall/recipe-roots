@@ -1,5 +1,7 @@
 package com.github.russ4stall.reciperoots.recipes.servlets;
 
+import com.github.russ4stall.reciperoots.IndexOperations;
+import com.github.russ4stall.reciperoots.IndexOperationsImpl;
 import com.github.russ4stall.reciperoots.recipes.Recipe;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDao;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDaoImpl;
@@ -56,6 +58,7 @@ public class AddEditRecipeServlet extends HttpServlet {
                 resp.sendRedirect("/myrecipes");
                 return;
             }
+
         } else {
 
             req.setAttribute("recipeTitle", "Recipe Title");
@@ -84,14 +87,20 @@ public class AddEditRecipeServlet extends HttpServlet {
 
         HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("user");
-
+        IndexOperations indexOperations = new IndexOperationsImpl();
             if(isNew){
-                recipesDao.addRecipe(recipeTitle, recipeText, user.getId());
+                int recipeId = recipesDao.addRecipe(recipeTitle, recipeText, user.getId());
+                Recipe recipe = recipesDao.getRecipe(recipeId);
+
+                indexOperations.addToIndex(recipe);
 
             }else {
-               String sId = req.getParameter("id");
-               int id = Integer.valueOf(sId);
-               recipesDao.updateRecipe(id, recipeTitle, recipeText);
+                String sId = req.getParameter("id");
+                int id = Integer.valueOf(sId);
+                indexOperations.deleteFromIndex(id);
+                recipesDao.updateRecipe(id, recipeTitle, recipeText);
+                Recipe recipe = recipesDao.getRecipe(id);
+                indexOperations.addToIndex(recipe);
             }
 
         resp.sendRedirect("/myrecipes");

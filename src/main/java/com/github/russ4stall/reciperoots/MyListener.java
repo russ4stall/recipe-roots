@@ -31,24 +31,61 @@ public class MyListener implements ServletContextListener {
         User user = recipe.getUser();
         doc.add(new TextField("recipe", recipe.getRecipe(), Field.Store.YES));
         doc.add(new TextField("recipeTitle", recipe.getTitle(), Field.Store.YES));
-        doc.add(new IntField("recipeId", recipe.getId(), Field.Store.YES));
+        doc.add(new TextField("recipeId", String.valueOf(recipe.getId()), Field.Store.YES));
         doc.add(new TextField("recipeAuthor", user.getName(), Field.Store.YES));
         w.addDocument(doc);
     }
 
+    private static void deleteEntireIndex(File file) throws IOException{
+            if(file.isDirectory()){
+                if(file.list().length==0){
+                    file.delete();
+                    System.out.println("deleted directory: " + file.getAbsolutePath());
+                }else{
+                    String files[] = file.list();
+                    for (String temp : files) {
+                        File fileDelete = new File(file, temp);
+
+                        //recursive delete...WTF?
+                        deleteEntireIndex(fileDelete);
+                    }
+                    if(file.list().length==0){
+                        file.delete();
+                        System.out.println("deleted directory: " + file.getAbsolutePath());
+                    }
+                }
+            }else{
+                file.delete();
+                System.out.println("deleted file: " + file.getAbsolutePath());
+            }
+    }
+
+
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+        File file = new File("C:\\Users\\russellf\\Documents\\recipe-roots-index");
+       if (file.exists()){
+           System.out.println("file exists");
+           try{
+               deleteEntireIndex(file);
+           }catch (IOException e) {
+               e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+           }
+       }
         try {
             StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_43);
 
             IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_43, analyzer);
+            config.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
 
-            File file = new File("C:\\Users\\russellf\\Documents\\recipe-roots-index");
             SimpleFSDirectory index = new SimpleFSDirectory(file);
+
 
             RecipesDao recipesDao = new RecipesDaoImpl();
             List<Recipe> recipes = recipesDao.getAllRecipes();
             IndexWriter w = new IndexWriter(index , config);
+
 
             for(Recipe recipe : recipes){
                 addDoc(w, recipe);

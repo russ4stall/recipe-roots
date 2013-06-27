@@ -1,5 +1,7 @@
 package com.github.russ4stall.reciperoots.recipes.servlets;
 
+import com.github.russ4stall.reciperoots.IndexOperations;
+import com.github.russ4stall.reciperoots.IndexOperationsImpl;
 import com.github.russ4stall.reciperoots.recipes.Recipe;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDao;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDaoImpl;
@@ -64,6 +66,8 @@ public class DeleteRecipeServlet extends HttpServlet {
         int recipeId = Integer.valueOf(sRecipeId);
         RecipesDao recipesDao = new RecipesDaoImpl();
         recipesDao.deleteRecipe(recipeId);
+        IndexOperations indexOperations = new IndexOperationsImpl();
+        indexOperations.deleteFromIndex(recipeId);
         resp.sendRedirect("/myrecipes");
     }
 }

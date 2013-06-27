@@ -70,7 +70,7 @@ public class SearchServlet extends HttpServlet {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            int hitsPerPage = 10;
+            int hitsPerPage = 30;
             IndexReader reader = DirectoryReader.open(index);
             IndexSearcher searcher = new IndexSearcher(reader);
             TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage, true);

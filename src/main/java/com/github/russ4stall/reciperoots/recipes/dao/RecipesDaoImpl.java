@@ -48,9 +48,9 @@ public class RecipesDaoImpl implements RecipesDao {
 
 
     @Override
-    public void addRecipe(String title, String recipe, int userId) {
+    public int addRecipe(String title, String recipe, int userId) {
         SqlUtilities.jbdcUtil();
-
+        int recipeId = 1;
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/recipes", "recipe", "recipe");
 
@@ -58,11 +58,17 @@ public class RecipesDaoImpl implements RecipesDao {
             String query = "INSERT INTO recipes (title, recipe, user_id, created_on) " +
                     "VALUES (?, ?, ?, now())";
 
-            preparedStatement = connection.prepareStatement(query);
+            preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1,title);
             preparedStatement.setString(2,recipe);
             preparedStatement.setInt(3, userId);
             preparedStatement.executeUpdate();
+
+            resultSet = preparedStatement.getGeneratedKeys();
+            if(resultSet.next()){
+            recipeId = resultSet.getInt(1);
+            }
+
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -70,6 +76,7 @@ public class RecipesDaoImpl implements RecipesDao {
             SqlUtilities.closeConnection(connection);
             SqlUtilities.closePreparedStatement(preparedStatement);
         }
+        return recipeId;
     }
 
 

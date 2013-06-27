@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Recipe Roots</title>
-    <link rel="stylesheet" type="text/css" href="/recipe_roots_styles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/recipe_roots_styles.css">
     <script>
         function submitMyForm(){
         document.forms["deleteComment"].submit();

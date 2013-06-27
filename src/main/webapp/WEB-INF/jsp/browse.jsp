@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Browse</title>
-    <link rel="stylesheet" type="text/css" href="/recipe_roots_styles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/recipe_roots_styles.css">
 </head>
 <body>
 <div id="banner">
@@ -13,7 +13,7 @@
     <div id="title">Recipe Roots</div>
     <rr:navigation></rr:navigation>
     <div id="search">
-        <form action="/search" method="get"><input type="submit" value="Search">
+        <form action="${pageContext.request.contextPath}/search" method="get"><input type="submit" value="Search">
             <input type="hidden" name="byType" value="recipe">
             <input type="text" size="15" name="search" placeholder="Search Recipes">
         </form>
