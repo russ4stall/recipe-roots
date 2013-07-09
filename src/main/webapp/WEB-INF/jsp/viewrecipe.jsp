@@ -41,7 +41,8 @@
             </form>
         </c:if>
             <c:if test="${empty commentList}">
-                There are no comments for this recipe.
+                There are no comments for this recipe.<br>
+                <a href="${pageContext.request.contextPath}/login?validUser=true"><u>Log In</u></a> to leave a comment.
             </c:if>
     </div>
         <c:forEach items="${commentList}" var="comment">

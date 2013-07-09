@@ -25,7 +25,7 @@ public class HomeServlet extends HttpServlet {
         RecipesDao recipesDao = new RecipesDaoImpl();
         Recipe randomRecipe = recipesDao.getRandomRecipe();
         Recipe latestRecipe = recipesDao.getLatestRecipe();
-        Recipe sampleRecipe = recipesDao.getRecipe(67);
+        Recipe sampleRecipe = recipesDao.getRecipe(77);
 
         req.setAttribute("sampleRecipe", sampleRecipe);
         req.setAttribute("randomRecipe", randomRecipe);

@@ -22,6 +22,7 @@
 </div> -->
 
     <rr:recipe recipe="${sampleRecipe}"></rr:recipe>
+    <div id="top_recipes_divider">Top Recipes</div>
     <rr:recipethumb recipe="${randomRecipe}"></rr:recipethumb>
     <rr:recipethumb recipe="${sampleRecipe}"></rr:recipethumb>
     <rr:recipethumb recipe="${latestRecipe}"></rr:recipethumb>

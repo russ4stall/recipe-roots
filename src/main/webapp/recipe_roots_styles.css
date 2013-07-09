@@ -139,9 +139,9 @@ body {
 #wrapper {
     display: block;
     float: left;
-    width: 680px;
+    width: 660px;
     min-height: 1000px;
-    padding: 10px;
+    padding: 20px;
     /*background-color: #878482;*/
     background-color: #FFFDF0;
     box-shadow: 5px 5px 10px black;
@@ -154,10 +154,11 @@ body {
     /*min-height: 600px;*/
     margin-left: 20px;
     box-shadow: 5px 5px 10px black;
+
 }
 
 #aside_login {
-
+    margin-bottom: 15px;
     padding: 5px;
     padding-bottom: 10px;
     border-bottom: 1px dotted #372010;
@@ -274,7 +275,8 @@ h2 {
     background-color: #FFFDF0;
     border: 1px dotted #372010;
     padding: 30px;
-    margin: 10px;
+
+    margin-bottom: 20px;
 }
 
 
@@ -363,10 +365,30 @@ h2 {
 
 #aside_recipes {
    margin:10px;
+    /*border: 1px solid red;*/
 }
 
+#top_recipes_divider {
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    height: 40px;
+    line-height: 40px;
+    width: 660px;
+    text-align: center;
+    border-bottom:1px dotted #372010;
+    border-top:1px dotted #372010;
+    font-size: 30px;
+    font-style: italic;
+    font-family: Georgia, serif;
+    color: gray;
+    text-shadow: 1px 1px lightgray;
+}
+
+
 #recipe_thumb {
-    margin:5px;
+    margin-right: 6px;
+    margin-left: 6px;
     display: block;
     float: left;
     position: relative;
