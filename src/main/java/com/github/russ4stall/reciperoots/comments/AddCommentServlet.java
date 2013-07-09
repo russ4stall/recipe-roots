@@ -3,6 +3,7 @@ package com.github.russ4stall.reciperoots.comments;
 import com.github.russ4stall.reciperoots.comments.dao.CommentsDao;
 import com.github.russ4stall.reciperoots.comments.dao.CommentsDaoImpl;
 import com.github.russ4stall.reciperoots.users.User;
+import com.github.russ4stall.reciperoots.utilities.ParameterHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,9 +27,12 @@ public class AddCommentServlet extends HttpServlet {
 
         HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("user");
-        String sRecipeId = req.getParameter("recipeId");
-        int recipeId = Integer.valueOf(sRecipeId);
 
+        ParameterHelper helper = new ParameterHelper(req);
+        Integer recipeId = helper.getParameterAsInteger("recipeId");
+        if (recipeId == null) {
+            throw new ServletException("You must specify a recipe id!");
+        }
 
         CommentsDao commentsDao = new CommentsDaoImpl();
         commentsDao.addComment(comment, user.getId(), recipeId);

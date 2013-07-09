@@ -7,35 +7,35 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/recipe_roots_styles.css">
 </head>
 <body>
-<div id="banner">
-
-
-    <div id="title">Recipe Roots</div>
+<div id="banner"></div>
     <rr:navigation></rr:navigation>
-    <div id="search">
-        <form action="${pageContext.request.contextPath}/search" method="get"><input type="submit" value="Search">
-            <input type="hidden" name="byType" value="recipe">
-            <input type="text" size="15" name="search" placeholder="Search Recipes">
-        </form>
-    </div>
-</div>
-<div id="section_main">
-
+<div id="wrapper">
+<div id="recipe_list">
     <h1>All Recipes</h1>
-
+    <table>
+        <tr>
+            <th style="background-color: #FFFDF0">Title</th>
+            <th style="background-color: #FFFDF0">User</th>
+            <th style="background-color: #FFFDF0">Posted</th>
+        </tr>
     <c:forEach items="${recipes}" var="recipe">
-        <div class="recipe">
-            <a id="recipe_title_link" href="${pageContext.request.contextPath}/viewrecipe?id=${recipe.id}">
-                ${recipe.title} </a><small> By: ${recipe.user.name}<i>(${recipe.createdOn})</i></small>
-        <span class="options">
-        <a href="${pageContext.request.contextPath}/viewrecipe?id=${recipe.id}">view</a>
-        </span>
-        </div>
+                <tr>
+                    <td>
+                        <a id="recipe_title_link" href="${pageContext.request.contextPath}/viewrecipe?id=${recipe.id}">${recipe.title} </a>
+                    </td>
+                    <td>
+                         ${recipe.user.name}
+                    </td>
+                    <td>
+                        ${recipe.createdOn}
+                    </td>
+                </tr>
     </c:forEach>
+    </table>
 
 </div>
-
-
+</div>
+<rr:aside user="${user}"></rr:aside>
 </body>
 
 </html>

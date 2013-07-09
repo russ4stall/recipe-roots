@@ -6,17 +6,9 @@
     <link rel="stylesheet" type="text/css" href="/recipe_roots_styles.css">
 </head>
 <body>
-<div id="banner">
+<div id="banner"></div>
+<rr:navigation></rr:navigation>
 
-
-    <div id="title">Recipe Roots</div>
-    <rr:navigation></rr:navigation>
-    <div id="search">
-        <form action="/search" method="get"><input type="submit" value="Search">
-            <input type="hidden" name="byType" value="recipe">
-            <input type="text" size="15" name="search" placeholder="Search Recipes"></form>
-    </div>
-</div>
 <form id="login_register" action="${pageContext.request.contextPath}/login" method="post">
     <table>
         <tr><td colspan="2" style="text-align:center"><h1>Log In</h1></td></tr>
@@ -27,8 +19,6 @@
         <tr><td>&nbsp</td></tr>
         <tr><td colspan="2" style="text-align:center">Not a member? <a href="/register?passMatch=true&emailMatch=true">Sign Up</a></td></tr>
     </table>
-${sessionScope.user}
-
 </form>
 
 </body>

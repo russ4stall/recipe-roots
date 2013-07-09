@@ -43,6 +43,7 @@ public class SqlUtilities {
                 preparedStatement.close();
             } catch (SQLException e) {
                 // don't care
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -54,6 +55,8 @@ public class SqlUtilities {
                 connection.close();
             } catch (SQLException e) {
                 // don't care
+                System.out.println(e.getMessage());
+
             }
         }
     }

@@ -21,29 +21,13 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //get recipes from the db to post on the Home page
-        String logInLink = null;
-        HttpSession session = req.getSession(false);
-        User user;
-        if(session == null || session.getAttribute("user") == null){
-            logInLink = "<a href=\"/login?validUser=true\">Log In</a>";
-            String signUpLink = "<a href=\"/register?passMatch=true&emailMatch=true\">Sign Up</a>";
-            req.setAttribute("signUpLink", signUpLink);
-        }else{
-            user = (User) session.getAttribute("user");
-            String nameDisplay = "Logged in as " + user.getName();
-            req.setAttribute("nameDisplay", nameDisplay);
-            logInLink = "<a href=\"/logout\">Log Out</a>";
-            String myRecipesLink = "<a href=\"/myrecipes\">My Recipes</a>";
-            req.setAttribute("myRecipesLink", myRecipesLink);
-            String loggedInAs = "Logged in as " + user.getName();
-            req.setAttribute("loggedInAs", loggedInAs);
-        }
-        req.setAttribute("logInLink", logInLink);
-        RecipesDao recipesDao = new RecipesDaoImpl();
 
+        RecipesDao recipesDao = new RecipesDaoImpl();
         Recipe randomRecipe = recipesDao.getRandomRecipe();
         Recipe latestRecipe = recipesDao.getLatestRecipe();
+        Recipe sampleRecipe = recipesDao.getRecipe(67);
+
+        req.setAttribute("sampleRecipe", sampleRecipe);
         req.setAttribute("randomRecipe", randomRecipe);
         req.setAttribute("latestRecipe", latestRecipe);
 

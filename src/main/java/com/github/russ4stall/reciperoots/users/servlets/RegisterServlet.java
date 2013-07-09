@@ -24,15 +24,12 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String sPassMatch = req.getParameter("passMatch");
-        boolean passMatch = Boolean.valueOf(sPassMatch);
-        String sEmailMatch = req.getParameter("emailMatch");
-        boolean emailMatch = Boolean.valueOf(sEmailMatch);
-        String sEmailExists = req.getParameter("emailExists");
-        boolean emailExists = Boolean.valueOf(sEmailExists);
+        boolean passMatch = Boolean.valueOf(req.getParameter("passMatch"));
+        boolean emailMatch = Boolean.valueOf(req.getParameter("emailMatch"));
+        boolean emailExists = Boolean.valueOf(req.getParameter("emailExists"));
         String emailError = null;
         String passMatchError = null;
-        String logInLink = null;
+        String logInLink;
         HttpSession session = req.getSession(false);
         if(session == null || session.getAttribute("user") == null){
             logInLink = "<a href=\"/login?validUser=true\">Log In</a>";

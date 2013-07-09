@@ -1,6 +1,49 @@
+html, body, div, span, applet, object, iframe,
+ h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+strike, tt, var,
+ center,
+dl, dt, dd, ul, li,
+fieldset, form, label, legend,
+ caption, tbody, tfoot, thead,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+ /*HTML5 display-role reset for older browsers*/
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+/***********************END OF RESETS***************************/
+
+
 html {overflow-y: scroll;
     margin: 0px;
+    font-family: Arial;
+
 }
+
+h3 {
+    display: inline;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+ul {
+    margin-left: 20px;
+}
+
+
 a {
     color: darkblue;
     text-decoration: none;
@@ -12,74 +55,73 @@ a:hover{
 }
 
 body {
-    width: 1000px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
+    width: 960px;
     margin-left: auto;
     margin-right: auto;
-    background-image: url('ticks.png');
-    background-color: cornsilk;
+    background-image: url('/images/low_contrast_linen.png');
+
 }
 
 
 #banner {
     color: black;
+    background-color: white;
+    background-image: url('/images/recipe%20roots%20banner.png');
     font-family: Georgia;
-    width: 960px;
-    height: 90px;
-    border-bottom: 2px solid maroon ;
-   margin-bottom: 20px;
+    width: 940px;
+    height: 100px;
+    /*border-bottom: 2px solid maroon ;*/
+    padding: 10px;
+    box-shadow: 5px 5px 10px black;
 
 }
 
 #name_display {
     margin-top: 35px;
-    margin-left: 170px;
+    margin-left: 10px;
     float: left;
     font-family: Arial;
     font-size: 12px;
-
-
-}
-
-#title {
-    /*padding-left: 335px;*/
-
-    color: crimson;
-    text-shadow:2px 2px maroon;
-    margin-bottom: 10px;
-    font-size: 50px;
+    color: black;
 
 }
+
 
 #search {
    /* margin-left: 60px;*/
-    margin-top:-10px;
+    margin-top:0px;
+    margin-right: 15;
     float: right;
-    width:200px;
+
 }
 
 #nav {
+    width: 960px;
+    height:35px;
+    background-color: #372010;
     float: left;
-    padding-left: 10px;
-    /*border: 1px solid red;*/
+    line-height: 35px;
+    border-top: 1px solid #333333;
+    border-bottom: 1px solid #1F0E03;
+    box-shadow: 2px 2px 2px black;
+    margin-bottom: 20px;
 }
 #nav form {
+    display: block;
+    float: left;
 
-    padding: 8px;
     /*border: 1px solid red;*/
 }
 
 #nav a {
-    /*display: block;*/
-    width: 126px;
-
-    color: black;
+    display: block;
+    float: left;
+    color: white;
     text-decoration: none;
-    margin-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
     font-family: arial;
-  /*  border: 1px solid red;*/
+    /*border-right: 1px solid #676767;*/
 }
 
 #nav small{
@@ -90,42 +132,66 @@ body {
 }
 
 #nav a:hover{
-    text-decoration: underline;
+   color:gray;
 
+}
 
+#wrapper {
+    display: block;
+    float: left;
+    width: 680px;
+    min-height: 1000px;
+    padding: 10px;
+    /*background-color: #878482;*/
+    background-color: #FFFDF0;
+    box-shadow: 5px 5px 10px black;
+
+}
+#aside {
+    float: left;
+    background-color: #FFFDF0;
+    width: 240px;
+    /*min-height: 600px;*/
+    margin-left: 20px;
+    box-shadow: 5px 5px 10px black;
+}
+
+#aside_login {
+
+    padding: 5px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #372010;
+    font-family: arial;
 }
 
 #about {
     font-family: Arial;
-    width: 920px;
-    padding-left: 20px;
-    padding-right: 20px;
+    width: 760px;
+    padding-left: 90px;
+    padding-right: 100px;
     padding-bottom: 20px;
     margin-bottom: 20px;
-    border-bottom: 2px solid maroon;
+    /*border-bottom: 2px solid maroon;*/
+    line-height: 25px;
 }
 
 #login_register {
-    float: left;
+    background-color: #FFFDF0;
     width: 300px;
-    padding: 10px;
-    border: 3px double maroon;
-}
-#login_register table {
+    margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
-}
-h1 {
-    margin-top: 0px;
-    font-size: 20px;
-
-    color: black;
+    padding: 10px;
+    border: 6px double green;
+    box-shadow: 2px 2px 10px black;
+    /*#372010;*/
 }
 
 #section_main{
     display: block;
     float: left;
     margin-bottom: 40px;
+    width: 600px;
  /*  border: 1px solid red;*/
 
 }
@@ -134,35 +200,23 @@ h1 {
 .options {
     float: right;
 }
-#divider{
-    float: left;
-    width:1px;
-    height:500px;
-    margin-right: 20px;
-    border-right: 2px solid maroon;
-    box-shadow: 2px 2px 8px #888888;
-
-}
 
 #comments {
-    width:360px;
+    width:600px;
     float: left;
-    margin-top: -20px;
+    padding: 10px;
 }
 
 #comment {
-    background-color: whitesmoke;
-    margin-top: 0px;
     margin-bottom: 10px;
-    width: 360px;
-    padding-top: 5px;
-    padding-left: 10px;
-    padding-bottom: 10px;
-    padding-right: 10px;
-    box-shadow: 3px 3px 8px #888888;
+    width: 600px;
+    padding: 10px;
+    border: 1px dotted #372010;
 }
 
-
+#comment_form {
+    margin-bottom: 20px;
+}
 
 #recipe_title_link {
     font-weight: bold;
@@ -175,38 +229,85 @@ h1 {
 }
 
 #recipes_toolbar {
-    color: white;
+    color: black;
     font-family: arial;
-    padding: 2px;
+
     margin-top: 15px;
     margin-bottom: 5px;
-    background-color: gray;
-    width: 506px;
+
+    width: 600px;
     height: 40px;
     line-height: 30px;
 }
+
 #recipes_toolbar a {
-    color: white;
     padding-right: 5px;
     float: right;
 }
 
-.featured_recipes {
+h1 {
+    font-family: Verdana;
+    font-size: 25px;
+    color: #372010;
+    margin-bottom: 10px;
+}
+
+h2 {
+    /*padding-left: 10px;*/
+    font-size: 20px;
+    font-family: Verdana;
+    margin-bottom: 10px;
+}
+
+/*.featured_recipes {
     float: left;
-
     width: 360px;
-
     margin-right: 20px;
     min-height: 400px;
+
+}*/
+
+#recipe_display {
+    display: block;
+    float: left;
+    width: 600px;
+    background-color: #FFFDF0;
+    border: 1px dotted #372010;
+    padding: 30px;
+    margin: 10px;
+}
+
+
+
+#recipe_ingredients {
+    width: 250px;
+    float: left;
+    margin-top: 10px;
 
 }
 
 
-.recipe_display {
-    background-color: whitesmoke;
-    box-shadow: 3px 3px 8px #888888;
-    padding: 10px;
-    padding-bottom: 30px;
+#recipe_description {
+    width: 215px;
+    float: right;
+    margin-left: 50px;
+}
+
+#recipe_pic {
+    float: left;
+    background-color: lightgray;
+    width: 200px;
+    height: 200px;
+    margin-right: 60px;
+    margin-bottom: 10px;
+    border: 6px solid whitesmoke;
+    box-shadow: 0px 0px 13px #888888;
+}
+
+#recipe_instructions {
+    width: 600px;
+    float: left;
+
 }
 
 .float_me {
@@ -216,9 +317,73 @@ h1 {
    /* border: 1px solid red;*/
 }
 
-.recipe{
-    width: 500px;
-    border-bottom: 1px solid maroon;
+#recipe_list{
+    width: 600px;
     padding: 5px;
+
+}
+
+#recipe_list table td, th {
+    text-align: left;
+    padding: 5px;
+    width: 200px;
+    background-color: #EDE9E4;
+}
+
+#recipe_list table, td, th, tr {
+    border-collapse: collapse;
+
+}
+
+#recipe_list table tr {
+    border-collapse: collapse;
+    border: 3px solid #FFFDF0;
+}
+
+#user_tools_head {
+    color:#FFFDF0;
+    padding: 10px;
+    background-color: #372010;
+    box-shadow: 2px 2px 2px black;
+    border-bottom: 1px solid #1F0E03;
+}
+
+#user_tools {
+    padding:10px;
+
+    border-bottom: 1px dotted #372010;
+
+}
+
+#user_tools a{
+    display: block;
+    padding:2px;
+    color:#1F0E03;
+}
+
+#aside_recipes {
+   margin:10px;
+}
+
+#recipe_thumb {
+    margin:5px;
+    display: block;
+    float: left;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border: 4px solid whitesmoke;
+    box-shadow: 0px 0px 5px gray;
+    margin-bottom: 16px;
+}
+
+#recipe_thumb_info {
+    color: white;
+    padding: 5px;
+    position: absolute;
+    bottom: 0;
+    width: 190px;
+    min-height: 45px;
+    background-color: rgba(33, 33, 33, .60);
 
 }

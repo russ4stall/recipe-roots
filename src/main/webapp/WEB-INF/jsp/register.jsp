@@ -6,21 +6,11 @@
     <link rel="stylesheet" type="text/css" href="/recipe_roots_styles.css">
 </head>
 <body>
-<div id="banner">
-
-
-    <div id="title">Recipe Roots</div>
-    <rr:navigation></rr:navigation>
-    <div id="search">
-        <form action="/search" method="get"><input type="submit" value="Search">
-            <input type="hidden" name="byType" value="recipe">
-            <input type="text" size="15" name="search" placeholder="Search Recipes"></form>
-    </div>
-</div>
+<div id="banner"></div>
+<rr:navigation></rr:navigation>
 
 <form id="login_register" action="${pageContext.request.contextPath}/register" method="post">
     <table>
-
         <tr><td colspan="2" style="text-align:center"><h1>Register</h1></td></tr>
         <tr><td style="text-align:right">Name: </td><td><input type="text" name="name" value="${param.name}"></td></tr>
         <tr><td style="text-align:right">Email: </td><td><input type="text" name="email" value="${param.email}"></td></tr>

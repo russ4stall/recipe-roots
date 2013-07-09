@@ -21,30 +21,10 @@ import java.util.List;
 public class MyRecipesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String logInLink = null;
-        HttpSession session = req.getSession(false);
-        User user = new User();
-        if(session == null || session.getAttribute("user") == null){
-            resp.sendRedirect("/login?validUser=true");
-            return;
-        }else{
-            user = (User) session.getAttribute("user");
-            String nameDisplay = "Logged in as " + user.getName();
-            req.setAttribute("nameDisplay", nameDisplay);
-            logInLink = "<a href=\"/logout\">Log Out</a>";
-            String myRecipesLink = "<a href=\"/myrecipes\">My Recipes</a>";
-            req.setAttribute("myRecipesLink", myRecipesLink);
-            String loggedInAs = "Logged in as " + user.getName();
-            req.setAttribute("loggedInAs", loggedInAs);
-        }
-        req.setAttribute("logInLink", logInLink);
-
-
-
+        User user = (User) req.getAttribute("user");
         RecipesDao recipesDao = new RecipesDaoImpl();
         List recipes = recipesDao.getMyRecipes(user.getId());
         req.setAttribute("recipes", recipes);
-
         req.getRequestDispatcher("/WEB-INF/jsp/myrecipes.jsp").forward(req, resp);
     }
 

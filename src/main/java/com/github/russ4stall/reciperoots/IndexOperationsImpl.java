@@ -1,5 +1,6 @@
 package com.github.russ4stall.reciperoots;
 
+import com.github.russ4stall.reciperoots.recipes.Ingredient;
 import com.github.russ4stall.reciperoots.recipes.Recipe;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDao;
 import com.github.russ4stall.reciperoots.recipes.dao.RecipesDaoImpl;
@@ -32,10 +33,24 @@ public class IndexOperationsImpl implements IndexOperations{
     private static void addDoc(IndexWriter w, Recipe recipe) throws IOException {
         Document doc = new Document();
         User user = recipe.getUser();
-        doc.add(new TextField("recipe", recipe.getRecipe(), Field.Store.YES));
+        List<Ingredient> ingredients = recipe.getIngredients();
+        String sIngredients = "";
+
+        String searchAll = recipe.getTags() + recipe.getTitle() + recipe.getInstructions() + recipe.getDescription();
+
+        if(!ingredients.isEmpty()){
+            for(Ingredient ingredient: ingredients){
+                sIngredients = sIngredients + " " + ingredient.getIngredient();
+            }
+            searchAll = searchAll + " " + sIngredients;
+            doc.add(new TextField("recipeIngredients", sIngredients, Field.Store.YES));
+        }
+
+        doc.add(new TextField("searchAll", searchAll, Field.Store.YES));
         doc.add(new TextField("recipeTitle", recipe.getTitle(), Field.Store.YES));
         doc.add(new TextField("recipeId", String.valueOf(recipe.getId()), Field.Store.YES));
         doc.add(new TextField("recipeAuthor", user.getName(), Field.Store.YES));
+        doc.add(new TextField("recipeTags", recipe.getTags(), Field.Store.YES));
         w.addDocument(doc);
     }
 

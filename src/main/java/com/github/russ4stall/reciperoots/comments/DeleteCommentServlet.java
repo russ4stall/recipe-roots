@@ -3,6 +3,7 @@ package com.github.russ4stall.reciperoots.comments;
 import com.github.russ4stall.reciperoots.comments.dao.CommentsDao;
 import com.github.russ4stall.reciperoots.comments.dao.CommentsDaoImpl;
 import com.github.russ4stall.reciperoots.users.User;
+import com.github.russ4stall.reciperoots.utilities.ParameterHelper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,19 +22,12 @@ public class DeleteCommentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(false);
-        User user = (User) session.getAttribute("user");
 
-        String sRecipeId = req.getParameter("recipeId");
-        int recipeId = Integer.valueOf(sRecipeId);
+        User user = (User) req.getAttribute("user");
 
-        System.out.println(recipeId);
-
-        String sCommentId = req.getParameter("commentId");
-        int commentId = Integer.valueOf(sCommentId);
-
-        System.out.println(commentId);
-
+        ParameterHelper helper = new ParameterHelper(req);
+        int recipeId = helper.getParameterAsInteger("recipeId");
+        int commentId = helper.getParameterAsInteger("commentId");
 
         CommentsDao commentsDao = new CommentsDaoImpl();
         commentsDao.deleteComment(commentId);

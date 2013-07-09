@@ -14,19 +14,18 @@ public interface RecipesDao {
     /**
      * updates recipe in database
      *
-     * @param title  title of recipe
-     * @param recipe recipe text
+     * @param recipe recipe object
      */
-    void updateRecipe(int id, String title, String recipe);
+    void updateRecipe(Recipe recipe);
 
     /**
      * adds new recipe to database
      *
-     * @param title  title of recipe
-     * @param recipe recipe text
-     * @param userId numerical id of user
+     *
+     * @param recipe recipe object
+     *
      */
-    int addRecipe(String title, String recipe, int userId);
+    int addRecipe(Recipe recipe);
 
     /**
      * deletes recipe from database

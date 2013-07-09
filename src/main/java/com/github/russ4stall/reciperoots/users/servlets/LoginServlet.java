@@ -69,6 +69,7 @@ public class LoginServlet extends HttpServlet {
                     validUser = false;
                 }
             }
+
         if (validUser) {
             resp.sendRedirect("/myrecipes");
         } else {
