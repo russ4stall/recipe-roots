@@ -16,10 +16,10 @@ public class PictureToolsImpl {
 
         File file = new File(fileName);
         if (file.exists()) {
-            System.out.println("file exists");
+
             return "/images/recipeimages/dishpic_" + id + ".jpg";
         } else {
-            System.out.println("file does not exist");
+
             return "/images/recipeimages/dishpic_generic.jpg";
         }
     }

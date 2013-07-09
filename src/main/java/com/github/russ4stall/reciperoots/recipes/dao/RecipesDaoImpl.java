@@ -458,6 +458,8 @@ public class RecipesDaoImpl implements RecipesDao {
             user.setId(resultSet.getInt("user_id"));
             recipe.setId(resultSet.getInt("id"));
             recipe.setUser(user);
+            recipe.setPrepTime(resultSet.getInt("prep_time"));
+            recipe.setCookTime(resultSet.getInt("cook_time"));
             recipe.setInstructions(resultSet.getString("instructions"));//get recipes string from db
             recipe.setCreatedOn(resultSet.getDate("created_on"));//get date from db
             user.setId(resultSet.getInt("id"));

@@ -13,8 +13,8 @@
     <h1>${recipe.title}</h1></a>
     <h4>Authored by: <a href="mailto:${recipe.user.email}">${recipe.user.name}</a></h4>
     <h2>Time</h2>
-    Prep Time: ${recipe.prepTime} minutes<br>
-    Cook Time: ${recipe.cookTime} minutes<br>
+    Prep Time: ${rrl:toHourMixedNumber(recipe.prepTime, 0)}<br>
+    Cook Time: ${rrl:toHourMixedNumber(recipe.cookTime, 0)}<br>
 
     <div id="recipe_ingredients">
         <h2>Ingredients</h2>
